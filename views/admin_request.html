@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ข้อมูลคำขอเปิดโครงการ</title>
+    <link rel="stylesheet" href="../public/styles/request.css">
+    
+    <!-- Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sarabun:ital,wght@0,400;1,100&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Pridi&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.0/umd/popper.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://code.iconify.design/1/1.0.6/iconify.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/10.15.7/sweetalert2.all.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.22/js/dataTables.bootstrap4.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.2.6/js/dataTables.responsive.min.js"></script>
+    <script src="../public/src/request.js"></script>
+
+
+</head>
+
+<body style="font-family: 'Sarabun', sans-serif;">
+    
+    <!-- Vertical Navbar -->
+    <div class="vertical-nav mt-1" id="sidebar">
+        <div class="vertical-menu">
+            <ul class="nav flex-column mt-4">
+                <img src="../public/img/befriend-web_icon.png" width="33%" height="35%" id="webicon">
+                <h3 style="text-align: center;">BEFRIEND</h3>
+                <hr style="color: black; size: 8px; width: 80%;">
+                <li><a href="./admin_request.html" class="active"><span><img src="../public/img/mail.png"
+                                width="20px"></span>
+                        ข้อมูลคำขอ</span></a></li>
+                <li><a href="./admin_allproject.html"><span> <img src="../public/img/project.png" width="20px"></span>
+                        โครงการ</a></li>
+                <li><a href="#"><span><img src="../public/img/auction.png" width="23px"></span> การประมูล</a></li>
+                <li><a href="#"><span><img src="../public/img/home.png" width="23px"></span>
+                        การประมูลขององค์กร</a></li>
+                <li><a href="#"><span><img src="../public/img/delivery-truck.png" width="23px"></span>
+                        สถานะสินค้า</a></li>
+                <li><a href="./admin_login.html"><span><img src="../public/img/logout.png" width="23px"></span>
+                        ออกจากระบบ</a></li>
+                <br><br><br>
+                <hr style="color: black; size: 8px; width: 80%; vertical-align: end;">
+                <li style="text-align: center;">
+                    <h4><span><img src="../public/img/user.png" width="50px"></span>
+                        Kun Run</h4>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="page-content p-5" style="padding: 15px">
+        <div class="container-fluid">
+            <button id="btnproject" class="btn">คำขอเปิดโครงการ</button>
+            <button id="btnauction" class="btn">คำขอเปิดประมูล</button>
+            <br><br>
+            <table id="detailrequesttable" class="table table-hover" style="width: 100%; text-align: center;"></table>
+        </div>
+    </div>
+
+
+</body>
+
+</html>
