@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>โครงการทั้งหมด</title>
-    <link rel="stylesheet" href="../public/styles/allproject.css">
+    <link rel="stylesheet" href="styles/allproject.css">
 
     <!-- Font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -24,7 +24,7 @@
     <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.22/js/dataTables.bootstrap4.min.js"></script>
     <script src="https://cdn.datatables.net/responsive/2.2.6/js/dataTables.responsive.min.js"></script>
-    <script src="../public/src/allproject.js"></script>
+    <script src="src/allproject.js"></script>
 </head>
 
 <body style="font-family: 'Sarabun', sans-serif;">
@@ -33,25 +33,25 @@
     <div class="vertical-nav mt-1" id="sidebar">
         <div class="vertical-menu">
             <ul class="nav flex-column mt-4">
-                <img src="../public/img/befriend-web_icon.png" width="33%" height="35%" id="webicon">
+                <img src="img/befriend-web_icon.png" width="33%" height="35%" id="webicon">
                 <h3 style="text-align: center;">BEFRIEND</h3>
                 <hr style="color: black; size: 8px; width: 80%;">
-                <li><a href="./admin_request.html"><span><img src="../public/img/mail.png" width="20px"></span>
+                <li><a href="/request"><span><img src="img/mail.png" width="20px"></span>
                         ข้อมูลคำขอ</span></a></li>
-                <li><a href="./admin_allproject.html" class="active"><span> <img src="../public/img/project.png"
+                <li><a href="/allproject" class="active"><span> <img src="img/project.png"
                                 width="20px"></span>
                         โครงการ</a></li>
-                <li><a href="#"><span><img src="../public/img/auction.png" width="23px"></span> การประมูล</a></li>
-                <li><a href="#"><span><img src="../public/img/home.png" width="23px"></span>
+                <li><a href="#"><span><img src="img/auction.png" width="23px"></span> การประมูล</a></li>
+                <li><a href="#"><span><img src="img/home.png" width="23px"></span>
                         การประมูลขององค์กร</a></li>
-                <li><a href="#"><span><img src="../public/img/delivery-truck.png" width="23px"></span>
+                <li><a href="#"><span><img src="img/delivery-truck.png" width="23px"></span>
                         สถานะสินค้า</a></li>
-                <li><a href="./admin_login.html"><span><img src="../public/img/logout.png" width="23px"></span>
+                <li><a href="./admin_login.html"><span><img src="img/logout.png" width="23px"></span>
                         ออกจากระบบ</a></li>
                 <br><br><br>
                 <hr style="color: black; size: 8px; width: 80%; vertical-align: end;">
                 <li style="text-align: center;">
-                    <h4><span><img src="../public/img/user.png" width="50px"></span>
+                    <h4><span><img src="/img/user.png" width="50px"></span>
                         Kun Run</h4>
                 </li>
             </ul>
@@ -61,20 +61,20 @@
     <div class="page-content p-5" style="background-color: rgb(255, 255, 255);">  
         <div class="row">
             <div class="container project" style="width: 20%; background-color: #009DFA;">
-                <h1>20</h1>
+                <h1 id="allproject"></h1>
                 <p>โครงการทั้งหมด</p>
             </div>
             <div class="container project " style="width: 20%; background-color: #7360ED;">
-                <h1>15</h1>
+                <h1 id="makingproject"></h1>
                 <p>โครงการที่กำลังดำเนินการ</p>
             </div>
             <div class="container project" style="width: 20%; background-color: #FFC700;">
-                <h1>3</h1>
+                <h1 id="nomoneyproject"></h1>
                 <p>โครงการที่ปิดไปแล้วแต่ยอดบริจาคไม่ครบ</p>
             </div>
             <div class="container project" style="width: 20%; background-color: #55CE65;">
-                <h1>2</h1>
-                <p>โครวการที่เสร็จสมบูรณ์</p>
+                <h1 id="successproject"></h1>
+                <p>โครงการที่เสร็จสมบูรณ์</p>
             </div>
         </div>
         <br>
