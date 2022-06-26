@@ -178,7 +178,7 @@ app.post('/projectinfo', function (req, res) {
             const { agent, personname, addressperson, personphone, emailperson, ownerid } = req.body;
             for (let i = 0; i < filename.length; i++) { }
 
-            const sql = 'INSERT INTO donate (donate.donate_agent , donate.donate_responperson , donate.donate_personaddress , donate.donate_personphone , donate.donate_personemail , donate.donate_personcard , donate.donate_bankaccount ,donate.donate_status , donate.donate_owner , donate.donate_types , donate.donate_payment_status) VALUES (?, ?, ?, ?, ?, ? , ?, 1 ,? , 2, 1)';
+            const sql = 'INSERT INTO donate (donate.donate_agent , donate.donate_responperson , donate.donate_personaddress , donate.donate_personphone , donate.donate_personemail , donate.donate_personcard , donate.donate_bankaccount ,donate.donate_status , donate.donate_owner , donate.donate_types , donate.donate_payment_status , donate.donate_percen) VALUES (?, ?, ?, ?, ?, ? , ?, 1 ,? , 2, 1 ,0)';
             con.query(sql, [parseInt(agent), personname, addressperson, personphone, emailperson, filename[0].filename, filename[1].filename, parseInt(ownerid)], function (err, result) {
                 if (err) {
                     console.log(err)
@@ -633,7 +633,7 @@ app.get('/hasingpassword/:password', (req, res) => {
     bcrypt.hash(password, 10, function (err, hash) {
         if (err) {
             console.log(err);
-            res.status(500).send('Hashing Password Error')
+            res.status(500).send('Hashing Password Error');
         }
         else {
             res.send(hash);
