@@ -178,7 +178,7 @@ app.post('/projectinfo', function (req, res) {
             const { agent, personname, addressperson, personphone, emailperson, ownerid } = req.body;
             for (let i = 0; i < filename.length; i++) { }
 
-            const sql = 'INSERT INTO donate (donate.donate_agent , donate.donate_responperson , donate.donate_personaddress , donate.donate_personphone , donate.donate_personemail , donate.donate_personcard , donate.donate_bankaccount ,donate.donate_status , donate.donate_owner , donate.donate_types , donate.donate_payment_status) VALUES (?, ?, ?, ?, ?, ? , ?, 1 ,? , 2, 1)';
+            const sql = 'INSERT INTO donate (donate.donate_agent , donate.donate_responperson , donate.donate_personaddress , donate.donate_personphone , donate.donate_personemail , donate.donate_personcard , donate.donate_bankaccount ,donate.donate_status , donate.donate_owner , donate.donate_types , donate.donate_payment_status , donate.donate_percen) VALUES (?, ?, ?, ?, ?, ? , ?, 1 ,? , 2, 1, 0)';
             con.query(sql, [parseInt(agent), personname, addressperson, personphone, emailperson, filename[0].filename, filename[1].filename, parseInt(ownerid)], function (err, result) {
                 if (err) {
                     console.log(err)
@@ -401,6 +401,12 @@ app.get('/logout', function (req, res) {
     res.redirect('/');
 })
 
+//auction organization
+app.get('/auntion_organiz', function (req, res) {
+    res.sendFile(path.join(__dirname, './views/auctionorganiz.html'))
+})
+
+
 app.post('/loginadmin', (req, res) => {
     const username = req.body.username;
     const password = req.body.password;
@@ -408,12 +414,14 @@ app.post('/loginadmin', (req, res) => {
     con.query(sql, [username], (err, result) => {
         if (err) {
             console.log(err);
+            console.log('Do not have account')
             res.status(500).send('Database Error');
         }
 
         // Wrong Username
         if (result.length != 1) {
             console.log(err);
+            console.log('Do not have account 2')
             return res.status(500).send('Wrong Username')
         }
 
