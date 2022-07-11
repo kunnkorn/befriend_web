@@ -1,69 +1,16 @@
 
-.vertical-nav {
-    min-width: 17rem;
-    width: 17rem;
-    height: 100%;
-    position: fixed;
-    /* top: 100px; */
-    left: 0;
-    background: rgb(255, 255, 255);
-    transition: all 0.4s;
-    margin-top: 11px;
-}
 
-.vertical-menu a {
-    display: block;
-    padding: 15px;
-    text-decoration: none;
-}
-
-.vertical-menu a:hover {
-    color: #fbfefb;
-    background-color: #fce07d;
+/* =====list auction ==== */
+#list-openauction{
+    margin-left: 3%;
+    margin-top: 2%;
 }
 
 #btnback {
     cursor: pointer;
 }
 
-.page-content {
-    width: calc(100% - 17rem);
-    margin-left: 17rem;
-    transition: all 0.4s;
-}
 
-#sidebar.active {
-    margin-left: 0rem;
-}
-
-@media (max-width: 768px) {
-    #sidebar {
-        margin-left: -17rem;
-        z-index: 1;
-    }
-    .brand-text {
-        display: none;
-    }
-    #sidebar.active {
-        margin-left: 0;
-    }
-    #content {
-        width: 100%;
-        margin: 0;
-    }
-    .column {
-        width: 100%;
-      }
-}
-
-@media (min-width: 768px) {
-    #text-brand {
-        display: none;
-    }
-    .column {
-        width: 100%;
-      }
-}
 
 li a {
     color: #cac8c8;
@@ -79,24 +26,13 @@ a.active {
     color: #000000;
 }
 
-#webicon{
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
+#webicon {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
 
-#btnlistauction{
-    font-size: 18px;
-    background-color: white;
-    color: black;
-    border: 2px solid #FFC700;
-    border-radius: 10px;
-    height: 55px;
-    width: 20%;
-   
-
-}
-#btnopenauction{
+#btnlistauction {
     font-size: 18px;
     background-color: #cac8c8;
     color: #868686;
@@ -104,26 +40,173 @@ a.active {
     height: 55px;
     width: 20%;
 }
-.container{
+
+#btnopenauction {
+    font-size: 18px;
+    background-color: white;
+    color: black;
+    border: 2px solid #FFC700;
+    border-radius: 10px;
+    height: 55px;
+    width: 20%;
+}
+
+.container {
     display: flex;
     flex-wrap: wrap;
     margin-top: 3%;
-   
+
 }
-.img{
+
+.img {
     width: 56px;
     height: 50px;
     border-radius: 10px;
-    background-color: rgb(255,199, 0,0.2);
+    background-color: rgb(255, 199, 0, 0.2);
     padding: 10%;
 }
-#btndelivery{
+
+#btndelivery {
     margin-left: 1%;
-   border-style: none;
-   outline:none;
-   border: none;
-  box-shadow: none;
-    
+    border-style: none;
+    outline: none;
+    border: none;
+    box-shadow: none;
+
 }
 
+#head-auction {
+    font-size: 21px;
+    font-weight: 500
+}
+
+#galeria {
+    margin-top: 40px;
+    display: flex;
+    float: left;
+    flex-wrap: wrap;
+    padding: 0 4px;
+
+}
+
+#galeria img {
+    width: 180px;
+    height: 150px;
+    border-radius: 3px;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+    opacity: 85%;
+}
+
+/* upload button  */
+#uploadtxt {
+    font-size: 16px;
+    font-weight: 600;
+    margin-top: 35px;
+    margin-bottom: 10px;
+}
+
+#open_auction {
+    margin-top: 45px;
+
+}
+
+
+/* Clear floats after the columns */
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+/* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
+
+@media (max-width: 769px) {
+    #content {
+        width: 100%;
+        margin: 0;
+    }
+
+    #btnlistauction,
+    #btnopenauction {
+        width: 45%;
+        font-size: 15px;
+    }
+
+    .open-auction {
+        width: 100%;
+    }
+
+}
+
+
+@media (min-width: 768px) {
+    #text-brand {
+        display: none;
+    }
+
+    #btnlistauction,
+    #btnopenauction {
+        width: 40%;
+        font-size: 18px;
+    }
+
+    .open-auction {
+        width: 80%;
+    }
+}
+
+#btnlistauction,
+#btnopenauction {
+    width: 25%;
+    font-size: 18px;
+}
+
+label {
+    width: 100%;
+    margin-top: 15px;
+}
+
+.card-input-element {
+    display: none;
+
+}
+
+
+/* .card-input {
+    margin: 10px;
+    padding: 00px;
+} */
+
+.card-input:hover {
+    cursor: pointer;
+}
+
+.card-input-element:checked+.card-input {
+    box-shadow: 0 0 2px 2px yellow;
+}
+
+li {
+    display: block;
+    margin-top: 7px;
+    color: #868686;
+
+}
+
+.card-img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+#open-auction_btn{
+    margin-top: 5%;
+    float: right;
+}
+#txtchooseproject{
+    font-weight: bold;
+    font-size: 20px;
+    
+}
+#col2{
+    margin-top: 3%;
+}
 
