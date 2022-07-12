@@ -1,0 +1,37 @@
+body{
+    width: 100%;
+    margin: 0;
+}
+.btn-auction{
+    font-size: 18px;
+    background-color: #cac8c8;
+    color: #868686;
+    border-radius: 10px;
+    height: 55px;
+    width: 20%;
+    border: none;
+}
+.btn-auction:active{
+    font-size: 18px;
+    background-color: white;
+    color: black;
+    border: 2px solid #FFC700;
+    border-radius: 10px;
+    height: 55px;
+    width: 20%;
+}
+.btn-auction:focus{
+    font-size: 18px;
+    background-color: white;
+    color: black;
+    border: 2px solid #FFC700;
+    border-radius: 10px;
+    height: 55px;
+    width: 20%;
+}
+table.dataTable thead tr {
+    background-color: #FFC700;
+    text-align: center;
+  }
+  .table thead,
+.table th {text-align: center;}

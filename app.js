@@ -421,6 +421,9 @@ app.get('/detail_auction',function(req,res){
 app.get('/status-delivery',function(req,res){
     res.sendFile(path.join(__dirname,'./views/status_item_delivery.html'))
 })
+app.get('/auction',function(req,res){
+    res.sendFile(path.join(__dirname,'./views/auction.html'))
+})
 
 
 app.post('/loginadmin', (req, res) => {
