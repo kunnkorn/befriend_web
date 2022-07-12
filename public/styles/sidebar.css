@@ -24,6 +24,21 @@ a:focus {
     transition: all 0.3s;
 }
 
+li a {
+    color: #cac8c8;
+}
+
+#webicon {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+a.active {
+    background-color: #FFC700;
+    color: #000000;
+}
+
 .navbar {
     padding: 15px 10px;
     background: #fff;
@@ -72,7 +87,7 @@ a:focus {
 }
 
 #sidebar .sidebar-header {
-    padding: 20px;
+    /* padding: 20px; */
     /* background: #6d7fcc; */
     background: white;
     color: black;

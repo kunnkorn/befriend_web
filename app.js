@@ -402,9 +402,13 @@ app.get('/logout', function (req, res) {
 })
 
 //auction organization
-app.get('/auntion_organiz', function (req, res) {
+app.get('/auction_organiz', function (req, res) {
     res.sendFile(path.join(__dirname, './views/auctionorganiz.html'))
-})
+});
+
+app.get('/detailDelivery_auction',function(req,res){
+    res.sendFile(path.join(__dirname, './views/auctionorganiz_detaildelivery.html'));
+});
 
 
 app.post('/loginadmin', (req, res) => {
