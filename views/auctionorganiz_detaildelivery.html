@@ -129,11 +129,51 @@
                         <span> ยอดรวม</span>
                         <span id="total_price">5000165.0 bath.</span>
                     </div>
-                    <button class="btn btn-warning " id="update_tracking">อัพเดตเลขพัสดุ</button>
+                    <button type="button" class="btn btn-warning btn-lg" data-toggle="modal" data-target="#modelId" id="update_tracking">อัพเดตเลขพัสดุ</button>
+
+
                 </div>
             </div>
         </div>
+
     </div>
+
+
+          <!-- Modal -->
+          <div class="modal fade" id="modelId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId"
+          aria-hidden="true">
+          <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                  <div class="modal-header">
+                      <h5 class="modal-title">อัพเดตสถานะการจัดส่ง</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                      </button>
+                  </div>
+                  <div class="modal-body">
+                    <form action="">
+                        <label for="company_delivery" class="col-form-label">บริษัทที่จัดส่ง</label>
+                        <select name="company" id="company_delivery" class="form-control">
+                            <option value="kerry">Kerry</option>
+                            <option value="flash">Flash express</option>
+                            <option value="ninja">Ninja</option>
+                            <option value="thai">Thai delivery</option>
+                        </select>
+                        <label for="txttracking" class="col-form-label mt-3">เลขพัสดุ</label>
+                        <input type="text" placeholder="Tracking" class="form-control  mb-3" id="txttracking">
+                    </form>
+                   
+                  </div>
+                  <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                      <button type="button" class="btn btn-warning" type="submit">Save</button>
+                  </div>
+              </div>
+          </div>
+      </div>
+
+
+
 
 
 
