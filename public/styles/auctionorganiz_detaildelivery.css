@@ -58,3 +58,12 @@ body{
     }
 
 }
+
+.container-trac{
+  display: flex;
+  justify-content: space-between;
+  font-weight: bold;
+  font-size: 23px;
+  
+
+}
