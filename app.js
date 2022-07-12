@@ -410,6 +410,18 @@ app.get('/detailDelivery_auction',function(req,res){
     res.sendFile(path.join(__dirname, './views/auctionorganiz_detaildelivery.html'));
 });
 
+app.get('/detailrequest_auction',function (req,res){
+    res.sendFile(path.join(__dirname,'./views/detailrequest_auction.html'));
+});
+
+app.get('/detail_auction',function(req,res){
+    res.sendFile(path.join(__dirname,'./views/detail_auction.html'));
+});
+
+app.get('/status-delivery',function(req,res){
+    res.sendFile(path.join(__dirname,'./views/status_item_delivery.html'))
+})
+
 
 app.post('/loginadmin', (req, res) => {
     const username = req.body.username;
