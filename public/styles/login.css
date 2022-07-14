@@ -75,4 +75,10 @@ html, body, .container {
     margin-top: 8px;
     
 }
+img{
+    object-fit: cover;
+    width:100%;
+    height:auto;
+}
+
 

@@ -1,25 +1,73 @@
-<div class="vertical-nav mt-1" id="sidebar">
-    <div class="vertical-menu">
-        <ul class="nav flex-column mt-4">
-            <img src="../public/img/befriend-web_icon.png" width="33%" height="35%" id="webicon">
-            <h3 style="text-align: center;">BEFRIEND</h3>
-            <hr style="color: black; size: 8px; width: 80%;">
-            <li><a href="#" class="active"><span><img src="../public/img/mail.png" width="20px"></span> ข้อมูลคำขอ</span></a></li>
-            <li><a href="#"><span> <img src="../public/img/project.png" width="20px"></span>
-                    โครงการ</a></li>
-            <li><a href="#"><span><img src="../public/img/auction.png" width="23px"></span> การประมูล</a></li>
-            <li><a href="/auntion_organiz"><span><img src="../public/img/home.png" width="23px"></span>
-                    การประมูลขององค์กร</a></li>
-            <li><a href="#"><span><img src="../public/img/delivery-truck.png" width="23px"></span>
-                    สถานะสินค้า</a></li>
-            <li><a href="#"><span><img src="../public/img/logout.png" width="23px"></span>
-                    ออกจากระบบ</a></li>
-            <br><br><br>
-            <hr style="color: black; size: 8px; width: 80%; vertical-align: end;">
-            <li style="text-align: center;"><h4><span><img src="../public/img/user.png" width="50px"></span>
-                Kun Run</h4></li>
+<!-- Bootstrap CSS CDN -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"
+        integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+<!-- Our Custom CSS -->
+<link rel="stylesheet" href="styles/sidebar.css">
+<!-- Scrollbar Custom CSS -->
+<link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
+
+
+
+<!---------------------------- CDN for side bar  ------------------------------------------------->
+<!-- jQuery CDN - Slim version (=without AJAX) -->
+<!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+          integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+          crossorigin="anonymous"></script> -->
+<!-- Popper.JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"
+        integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ"
+        crossorigin="anonymous"></script>
+<!-- Bootstrap JS -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"
+        integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm"
+        crossorigin="anonymous"></script>
+<!-- jQuery Custom Scroller CDN -->
+<script
+        src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
+
+<script src="src/sidebar_scripts.js"></script>
+
+
+
+
+<!-- Sidebar  -->
+<nav id="sidebar">
+        <div class="sidebar-header">
+                <img src="img/befriend-web_icon.png" width="50%" height="35%" id="webicon">
+                <h3 style="text-align: center;">BEFRIEND</h3>
+                <hr style="color: black; size: 8px; width: 90%;">
+        </div>
+        <ul class="list-unstyled components">
+                <li><a href="/request" class="active"><span><img src="img/mail.png" width="20px"></span>
+                                ข้อมูลคำขอ</span></a></li>
+                <li><a href="/allproject"><span> <img src="img/project.png" width="20px"></span>
+                                โครงการ</a></li>
+                <li><a href="#"><span><img src="img/auction.png" width="23px"></span> การประมูล</a></li>
+                <li><a href="/auntion_organiz"><span><img src="img/home.png" width="23px"></span>
+                                การประมูลขององค์กร</a></li>
+                <li><a href="#"><span><img src="img/delivery-truck.png" width="23px"></span>
+                                สถานะสินค้า</a></li>
+                <li><a href="./admin_login.html"><span><img src="img/logout.png" width="23px"></span>
+                                ออกจากระบบ</a></li>
+                <br><br><br>
+                <hr style="color: black; size: 8px; width: 80%; vertical-align: end;">
+                <li style="text-align: center;">
+                        <h4><span><img src="img/user.png" width="50px"></span>
+                                Kun Run</h4>
+                </li>
         </ul>
-    </div>
+
+</nav>
+<!-- Page content wrapper-->
+<div id="content">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <div class="container-fluid">
+                        <button type="button" id="sidebarCollapse" class="btn btn-info">
+                                <i class="fas fa-align-left"></i>
+                                <span>Toggle Sidebar</span>
+                        </button>
+                </div>
+        </nav>
+
 </div>
-
-
