@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>คำขอเปิดประมูล</title>
+
+    <link rel="stylesheet" href="styles/detailrequest_auction.css">
+
+
+    <!-- Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sarabun:ital,wght@0,400;1,100&display=swap" rel="stylesheet">
+    <!-- <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css"> -->
+    <!-- <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap5.min.css"> -->
+
+    <!-- Bootstrap CSS CDN -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"
+        integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+    <!-- Our Custom CSS -->
+    <link rel="stylesheet" href="styles/sidebar.css">
+    <!-- Scrollbar Custom CSS -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Pridi&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.0/umd/popper.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://code.iconify.design/1/1.0.6/iconify.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/10.15.7/sweetalert2.all.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+
+
+    <!-- Popper.JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"
+        integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ"
+        crossorigin="anonymous"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"
+        integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm"
+        crossorigin="anonymous"></script>
+    <!-- jQuery Custom Scroller CDN -->
+    <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
+    <script src="src/sidebar_scripts.js"></script>
+
+
+
+
+</head>
+
+<body style="font-family: 'Sarabun', sans-serif;">
+    <div class="wrapper">
+        <!-- Sidebar  -->
+        <nav id="sidebar">
+            <div class="sidebar-header">
+                <img src="img/befriend-web_icon.png" width="50%" height="35%" id="webicon">
+                <h3 style="text-align: center;">BEFRIEND</h3>
+                <hr style="color: black; size: 8px; width: 90%;">
+            </div>
+            <ul class="list-unstyled components">
+                <li><a href="/request" class="active"><span><img src="img/mail.png" width="20px"></span>
+                        ข้อมูลคำขอ</span></a></li>
+                <li><a href="/allproject"><span> <img src="img/project.png" width="20px"></span>
+                        โครงการ</a></li>
+                <li><a href="#"><span><img src="img/auction.png" width="23px"></span> การประมูล</a></li>
+                <li><a href="/auntion_organiz"><span><img src="img/home.png" width="23px"></span>
+                        การประมูลขององค์กร</a></li>
+                <li><a href="#"><span><img src="img/delivery-truck.png" width="23px"></span>
+                        สถานะสินค้า</a></li>
+                <li><a href="./admin_login.html"><span><img src="img/logout.png" width="23px"></span>
+                        ออกจากระบบ</a></li>
+                <br><br><br>
+                <hr style="color: black; size: 8px; width: 80%; vertical-align: end;">
+                <li style="text-align: center;">
+                    <h4><span><img src="img/user.png" width="50px"></span>
+                        Kun Run</h4>
+                </li>
+            </ul>
+        </nav>
+
+        <!-- Page content wrapper-->
+        <div id="content">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <div class="container-fluid">
+                    <button type="button" id="sidebarCollapse" class="btn btn-info">
+                        <i class="fas fa-align-left"></i>
+                        <span>Toggle Sidebar</span>
+                    </button>
+                </div>
+            </nav>
+            <a href="/request" id="btnback"><i class="fa fa-arrow-left" aria-hidden="true"> ย้อนกลับ</i></a>
+            <h5 id="name_item" class="head_name-item">กระเป๋าสีแดง</h5>
+            <p>วันที่ที่ส่งเรื่องในการขอเปิดโครงการ <span id="datetime"> 22/01/2565</span></p>
+
+            <div class="row">
+                <div class="col-md-8">
+                    <!--Carousel Wrapper-->
+                    <div id="multi-item-example" class="carousel slide carousel-multi-item mb-5" data-ride="carousel">
+
+                        <!--Controls-->
+                        <div class="controls-top">
+                            <a class="btn-floating" href="#multi-item-example" data-slide="prev"><i
+                                    class="fa fa-chevron-left"></i></a>
+                            <a class="btn-floating" href="#multi-item-example" data-slide="next"><i
+                                    class="fa fa-chevron-right"></i></a>
+                        </div>
+                        <!--/.Controls-->
+
+                        <!--Indicators-->
+                        <ol class="carousel-indicators">
+                            <li data-target="#multi-item-example" data-slide-to="0" class="active"></li>
+                            <li data-target="#multi-item-example" data-slide-to="1"></li>
+                        </ol>
+                        <!--/.Indicators-->
+
+                        <!--Slides-->
+                        <div class="carousel-inner" role="listbox">
+                            <!--First slide-->
+                            <div class="carousel-item active">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="card mb-2">
+                                            <img class="card-img-top"
+                                                src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(34).jpg"
+                                                alt="Card image cap">
+
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4 ">
+                                        <div class="card mb-2">
+                                            <img class="card-img-top"
+                                                src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(18).jpg"
+                                                alt="Card image cap">
+
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 ">
+                                        <div class="card mb-2">
+                                            <img class="card-img-top"
+                                                src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(18).jpg"
+                                                alt="Card image cap">
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <!--/.First slide-->
+
+                            <!--Second slide-->
+                            <div class="carousel-item">
+
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="card mb-2">
+                                            <img class="card-img-top"
+                                                src="https://mdbootstrap.com/img/Photos/Horizontal/City/4-col/img%20(60).jpg"
+                                                alt="Card image cap">
+
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4 ">
+                                        <div class="card mb-2">
+                                            <img class="card-img-top"
+                                                src="https://mdbootstrap.com/img/Photos/Horizontal/City/4-col/img%20(47).jpg"
+                                                alt="Card image cap">
+
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 ">
+                                        <div class="card mb-2">
+                                            <img class="card-img-top"
+                                                src="https://mdbootstrap.com/img/Photos/Horizontal/City/4-col/img%20(47).jpg"
+                                                alt="Card image cap">
+
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                            <!--/.Second slide-->
+
+                        </div>
+                        <!--/.Slides-->
+
+                    </div>
+                    <!--/.Carousel Wrapper-->
+
+
+                    <!-- details auction item -->
+                    <div class="card " id="card-detail-auntion">
+                        <li><span class="text_detail">รหัสสินค้า: </span><span id="code_item">1235477</span></li>
+                        <li><span class="text_detail">ชื่อสินค้า: </span><span id="name_item">กระเป๋าเป้สีแดง</span>
+                        </li>
+                        <li class="text_detail">รายละเอียด:</li>
+                        <li id="detail_item">กระเป๋าเป้ Converse สีแดงรูปแบบสมัยใหม่
+                            ขนาด: กว้าง 25 ยาว 30
+                            น้ำหนัก: 100 kg</li>
+                        <li class="text_detail">ราคาเริ่มต้น :</li>
+                        <li class="start_price">15.0 bath.</li>
+                    </div>
+                    <!-- /details auction item -->
+
+                    <!-- project need to donate  -->
+                    <h4 class="mt-5 ">โครงการที่จะบริจาค</h4>
+
+                    <div class="card" id="project_with_item">
+                        <div class="row no-gutters">
+                            <div class="col-md-4 p-2">
+                                <img src="img/พิการ.jpg" class="card-img">
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body">
+                                    <h5 class="card-title">บ้านพักพิงเพื่อสุนัขและแมวจรจัด โดย หมากระสอบ </h5>
+                                    <li>จ. เพชรบูรณ์</li>
+                                    <li><i class="fa fa-clock-o" aria-hidden="true"> เหลืออีก 5 วัน</i></li>
+                                    <li><img src="img/icons/dollar-icon.png" width="7%"> 100000 bath.</li>
+                                    <div class="progress mt-3">
+                                        <div class="progress-bar bg-warning" role="progressbar" style="width: 75%"
+                                            aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">75%</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- /project need to donate  -->
+                    <button type="button" class="btn btn-success ml-2"  id="approve_item">อนุมัติ</button>
+                    <button type="button" class="btn btn-danger"  id="notapprove_item">ไม่อนุมัติ</button>
+                </div>
+                <!-- /col 1 -->
+
+                <!-- col 2 -->
+                <div class="col">
+                    <div class="card" id="detail_owner">
+                        <h5 style="font-weight: bold">ข้อมูล</h5>
+                        <li><span  class="text_detail">ชื่อ</span> <span id="ownername">นาง พิสมัย  มั่งมี </span></li>
+                        <li><span  class="text_detail">เสนอโครงการในนาม :</span> <span id="type_owner"> บุคคลทั่วไป</span></li>
+                        <li><span  class="text_detail">ที่อยู่ :</span></li>
+                        <li id="address">41/85  หมู่ 2 ตำบล โคกอีเลิ้ง 
+                            อำเภอในเมือง   จังหวัดอุดรธนี  54000</li>
+                            <li class="text_detail">เบอร์ติดต่อ :</li>
+                            <li id="phonenumber">0852147444</li>
+                            <li class="text_detail">อีเมล์</li>
+                            <li>pisamai@kagoo.com</li>
+
+                    </div>
+
+                </div>
+                <!-- /col 2 -->
+
+            </div>
+
+        </div>
+    </div>
+</body>
+
+</html>

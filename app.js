@@ -748,6 +748,31 @@ app.get('/logout', function (req, res) {
     res.redirect('/');
 })
 
+//auction organization
+app.get('/auction_organiz', function (req, res) {
+    res.sendFile(path.join(__dirname, './views/auctionorganiz.html'))
+});
+
+app.get('/detailDelivery_auction',function(req,res){
+    res.sendFile(path.join(__dirname, './views/auctionorganiz_detaildelivery.html'));
+});
+
+app.get('/detailrequest_auction',function (req,res){
+    res.sendFile(path.join(__dirname,'./views/detailrequest_auction.html'));
+});
+
+app.get('/detail_auction',function(req,res){
+    res.sendFile(path.join(__dirname,'./views/detail_auction.html'));
+});
+
+app.get('/status-delivery',function(req,res){
+    res.sendFile(path.join(__dirname,'./views/status_item_delivery.html'))
+})
+app.get('/auction',function(req,res){
+    res.sendFile(path.join(__dirname,'./views/auction.html'))
+})
+
+
 app.post('/loginadmin', (req, res) => {
     const username = req.body.username;
     const password = req.body.password;
@@ -755,12 +780,14 @@ app.post('/loginadmin', (req, res) => {
     con.query(sql, [username], (err, result) => {
         if (err) {
             console.log(err);
+            console.log('Do not have account')
             res.status(500).send('Database Error');
         }
 
         // Wrong Username
         if (result.length != 1) {
             console.log(err);
+            console.log('Do not have account 2')
             return res.status(500).send('Wrong Username')
         }
 
