@@ -159,7 +159,7 @@ app.post('/login', function (req, res) {
 
             }
             // Correct Password
-            const payload = { 'users_username': username, 'user_id': result[0].users_id, 'users_role': result[0].users_role , 'users_name' : result[0]['users_name'] }
+            const payload = { 'users_username': username, 'user_id': result[0].users_id, 'users_role': result[0].users_role, 'users_name': result[0]['users_name'] }
             const token = jwt.sign(payload, process.env.SECRET_KEY_JWT, { expiresIn: '1d' });
             res.json({ token: token });
         })
@@ -334,23 +334,54 @@ app.get('/alldataproject', function (req, res) {
     })
 });
 
-app.get('/picalldataproject' , function(req , res) {
+// Get Only 1 Picture of Project
+app.get('/onlypiconmainproject', (req, res) => {
+    const sql = 'SELECT donate.donate_id , donate.donate_name , donate.donate_area , donate.donate_startprice , DATEDIFF(donate.donate_enddate , donate.donate_startdate) AS timeout , MIN(picdonate.picdonate_id) AS "picID" FROM donate JOIN picdonate ON donate.donate_id = picdonate.picdonate_donateid GROUP BY picdonate.picdonate_donateid'
+    con.query(sql, function (err, result) {
+        if (err) {
+            console.log(err);
+            res.status(500).send('Database Erroo')
+        }
+        else {
+            for (let i = 0; i < result.length; i++) {
+                const sql = 'SELECT picdonate.picdonate_name FROM picdonate WHERE picdonate.picdonate_id = ? GROUP BY picdonate.picdonate_id'
+                con.query(sql, result[i]['picID'], function (err, resp) {
+                    if (err) {
+                        console.log(err);
+                        res.status(500).send('Cannot Get Name of pic');
+                        i = result.length
+                    }
+                    else {
+                        if (i + 1 == result.length) {
+                            res.send(resp)
+                        }
+
+                    }
+                });
+            }
+
+
+        }
+    })
+})
+
+app.get('/picalldataproject', function (req, res) {
     const sql = 'SELECT MAX(picdonate.picdonate_id) AS "IDTOPICTURE" FROM picdonate GROUP BY picdonate.picdonate_donateid';
-    con.query(sql , function(err , result) {
-        if(err) {
+    con.query(sql, function (err, result) {
+        if (err) {
             console.log(err);
             res.status(500).send('Database Get Pic Error')
         }
         else {
             const sql = 'SELECT picdonate.picdonate_name FROM picdonate WHERE picdonate.picdonate_id = ?';
-            for(let i = 0; i < result.length; i++) {
-                con.query(sql , [result[i]['IDTOPICTURE']] , function(err , resp) {
-                    if(err) {
+            for (let i = 0; i < result.length; i++) {
+                con.query(sql, [result[i]['IDTOPICTURE']], function (err, resp) {
+                    if (err) {
                         console.log(err);
                         res.status(500).send('Data Picname Error')
                     }
                     else {
-                        if(i + 1 == result.length) {
+                        if (i + 1 == result.length) {
                             res.send(resp);
                         }
                     }
@@ -411,10 +442,10 @@ app.get('/allauctionpost', (req, res) => {
 });
 
 // ไส้าำหรับโชว์ข้อมูลการประมูลที่ใกล้จะจบแล้ว
-app.get('/auctionpostnearend' , (req , res) => {
-    const sql = 'SELECT auction.auction_id , auction.auction_name , auction.auction_endprice , DATEDIFF(auction.auction_enddate , CURRENT_DATE) AS "timeout" , donate.donate_name , donate.donate_id FROM auction JOIN donate ON donate.donate_id = auction.auction_donateID AND DATEDIFF(auction.auction_enddate , CURRENT_DATE) < 2 AND DATEDIFF(auction.auction_enddate , CURRENT_DATE) > 0 AND auction.auction_status = 2'    
-    con.query(sql , function(err , result) {
-        if(err) {
+app.get('/auctionpostnearend', (req, res) => {
+    const sql = 'SELECT auction.auction_id , auction.auction_name , auction.auction_endprice , DATEDIFF(auction.auction_enddate , CURRENT_DATE) AS "timeout" , donate.donate_name , donate.donate_id FROM auction JOIN donate ON donate.donate_id = auction.auction_donateID AND DATEDIFF(auction.auction_enddate , CURRENT_DATE) < 2 AND DATEDIFF(auction.auction_enddate , CURRENT_DATE) > 0 AND auction.auction_status = 2'
+    con.query(sql, function (err, result) {
+        if (err) {
             console.log(err);
             res.status(500).send('Database Error')
         }
@@ -424,18 +455,18 @@ app.get('/auctionpostnearend' , (req , res) => {
     })
 })
 
-app.get('/endauctionpost' , (req , res) => {
+app.get('/endauctionpost', (req, res) => {
 
     const sql = 'UPDATE auction SET auction.auction_status = 4 WHERE DATEDIFF(auction.auction_enddate , CURRENT_DATE) = 0'
-    con.query(sql , function(err ,result) {
-        if(err) {
+    con.query(sql, function (err, result) {
+        if (err) {
             console.log(err);
             res.status(500).send('Cannot Update')
         }
         else {
             const sql = 'SELECT auction.auction_name , auction.auction_winner , auction.auction_endprice FROM auction WHERE auction.auction_status = 4'
-            con.query(sql , function(err , resp) {
-                if(err) {
+            con.query(sql, function (err, resp) {
+                if (err) {
                     console.log(err)
                     res.status(500).send('Cannot Select Winner')
                 }
@@ -463,12 +494,12 @@ app.get('/endauctionpost' , (req , res) => {
 //     });
 // });
 
-app.post('/pictureauction' , (req , res) => {
+app.post('/pictureauction', (req, res) => {
     const auctionid = req.body.auctionid
 
     const sql = 'SELECT picauction.picauction_id , picauction.picaution_name FROM picauction WHERE picauction.picauction_auctionid = ?'
-    con.query(sql , [auctionid] , (err , result) => {
-        if(err) {
+    con.query(sql, [auctionid], (err, result) => {
+        if (err) {
             console.log(err);
             res.status(500).send('Cannot Get Picture Auction')
         }
@@ -478,29 +509,29 @@ app.post('/pictureauction' , (req , res) => {
     })
 })
 
-app.post('/detailauction' , (req , res) => {
+app.post('/detailauction', (req, res) => {
     const auctionid = req.body.auctionid;
     const donateid = req.body.donateid;
 
     const sql = 'SELECT auction.auction_id , auction.auction_name , auction.auction_endprice , auction.auction_descript, auction.auction_winner, auction.auction_size , auction.auction_weight , DATEDIFF(auction.auction_enddate , CURRENT_DATE) AS "timeout" ,donate.donate_name FROM auction JOIN donate ON auction.auction_donateID = donate.donate_id AND auction.auction_id = ? AND donate.donate_id = ?'
-    con.query(sql , [auctionid , donateid] , function (err , result) {
-        if(err) {
+    con.query(sql, [auctionid, donateid], function (err, result) {
+        if (err) {
             console.log(err);
             res.status(500).send('Database Error')
         }
         else {
-           res.send(result);
+            res.send(result);
         }
     })
 })
 
 // แสดงชื่อคนที่ประมูล
-app.post('/showallname' , (req , res) => {
+app.post('/showallname', (req, res) => {
     const auctionid = req.body.auctionid
 
     const sql = 'SELECT bidder.bidder_price , users.users_name FROM bidder JOIN users ON users.users_id = bidder.bidder_userid AND bidder.bidder_auctionid = ?'
-    con.query(sql , [auctionid] , function (err , result) {
-        if(err) {
+    con.query(sql, [auctionid], function (err, result) {
+        if (err) {
             console.log(err);
             res.status(500).send('Database Error')
         }
@@ -512,30 +543,30 @@ app.post('/showallname' , (req , res) => {
 
 
 // แสดงชื่อคนประมูลและเงินในการประมูล
-app.post('/nameandmoney' , (req , res) => {
+app.post('/nameandmoney', (req, res) => {
     const auctionid = req.body.auctionid;
 
     const sql = 'SELECT MAX(bidder.bidder_id) AS MAXBIDDERID FROM bidder WHERE bidder.bidder_auctionid = ?'
-    con.query(sql, [auctionid] ,function(err , result) {
-        if(err) {
+    con.query(sql, [auctionid], function (err, result) {
+        if (err) {
             console.log(err)
             res.status(500).send('Cannot get MAXID')
         }
-        else{
+        else {
             const sql = 'SELECT bidder.bidder_userid AS USERID , bidder.bidder_price FROM bidder WHERE bidder.bidder_id = ?'
-            con.query(sql , [result[0].MAXBIDDERID] , (err , resp) => {
-                if(err) {
+            con.query(sql, [result[0].MAXBIDDERID], (err, resp) => {
+                if (err) {
                     console.log(err);
                     res.status(500).send('Cannot Get userid and auctionid');
                 }
                 else {
                     const sql = 'SELECT bidder.bidder_price , users.users_name FROM bidder JOIN users ON users.users_id = bidder.bidder_userid AND bidder.bidder_id = ? AND bidder.bidder_userid = ?'
-                    con.query(sql , [result[0].MAXBIDDERID ,resp[0].USERID] , (err , rdata) => {
-                        if(err) {
+                    con.query(sql, [result[0].MAXBIDDERID, resp[0].USERID], (err, rdata) => {
+                        if (err) {
                             console.log(err);
                             res.status(500).send('Cannot Get username')
                         }
-                        else{
+                        else {
                             res.send(rdata);
                         }
                     });
@@ -546,12 +577,12 @@ app.post('/nameandmoney' , (req , res) => {
 });
 
 // แสดงโครงการบริจาคที่การประมูลนี้จะบริจาคให้
-app.post('/prepostdonate' , (req , res) => {
+app.post('/prepostdonate', (req, res) => {
     const donateid = req.body.donateidpost;
 
     const sql = 'SELECT donate.donate_name , DATEDIFF(donate.donate_enddate , donate.donate_startdate) AS timeday , donate.donate_startprice FROM donate WHERE donate.donate_id = ?'
-    con.query(sql , [donateid] , (err , result) => {
-        if(err) {
+    con.query(sql, [donateid], (err, result) => {
+        if (err) {
             console.log(err)
             res.send('Cannot Get Donate Detail')
         }
@@ -565,7 +596,7 @@ app.post('/prepostdonate' , (req , res) => {
 app.get('/alldataprojectforsenario', function (req, res) {
 
     const sql = 'SELECT donate.donate_id , donate.donate_name , donate.donate_area , donate.donate_pricedurring , DATEDIFF(donate.donate_enddate , donate.donate_startdate) AS timeout , 100 / donate.donate_startprice * donate.donate_pricedurring - 100 / donate.donate_startprice * donate.donate_pricedurring % 1 AS "percen" FROM donate ';
-    con.query(sql ,function (err, result) {
+    con.query(sql, function (err, result) {
         if (err) {
             console.log(err);
             res.status(500).send('Database Error')
@@ -576,11 +607,11 @@ app.get('/alldataprojectforsenario', function (req, res) {
     })
 });
 
-app.get('/datarecommend' , function (req , res) {
+app.get('/datarecommend', function (req, res) {
 
     const sql = 'SELECT donate.donate_id , donate.donate_name , donate.donate_area , donate.donate_pricedurring , DATEDIFF(donate.donate_enddate , CURRENT_DATE) AS timeout , 100 / donate.donate_startprice * donate.donate_pricedurring - 100 / donate.donate_startprice * donate.donate_pricedurring % 1 AS "percen" FROM donate WHERE DATEDIFF(donate.donate_enddate , CURRENT_DATE) < 2'
-    con.query(sql , function(err , result) {
-        if(err) {
+    con.query(sql, function (err, result) {
+        if (err) {
             console.log(err)
             res.status(500).send('Cannot Get data recommend');
         }
@@ -591,11 +622,11 @@ app.get('/datarecommend' , function (req , res) {
 
 })
 
-app.get('/countauction' , function (req , res) {
+app.get('/countauction', function (req, res) {
 
     const sql = 'SELECT COUNT(auction.auction_id) AS "auctioncount" , donate.donate_id FROM auction JOIN donate ON auction.auction_donateID = donate.donate_id GROUP BY donate.donate_id'
-    con.query(sql , function(err , result) {
-        if(err) {
+    con.query(sql, function (err, result) {
+        if (err) {
             console.log(err)
             res.status(500).send('Cannot get auctioncount')
         }
@@ -606,11 +637,11 @@ app.get('/countauction' , function (req , res) {
 })
 
 // Auction Project
-app.post('/auctiondonate' , function(req , res) {
+app.post('/auctiondonate', function (req, res) {
     const donateid = req.body.donateid
     const sql = 'SELECT auction.auction_id , auction.auction_name , DATEDIFF(auction.auction_enddate , CURRENT_DATE) AS "timeout" , MAX(bidder.bidder_price) AS "lastprice" FROM auction JOIN donate ON auction.auction_donateID = donate.donate_id AND donate.donate_id = ? JOIN bidder ON auction_id = bidder.bidder_auctionid GROUP BY auction_id'
-    con.query(sql , [donateid] , (err , result) => {
-        if(err) {
+    con.query(sql, [donateid], (err, result) => {
+        if (err) {
             console.log(err);
             res.status(500).send('Database Error');
         }
@@ -622,22 +653,22 @@ app.post('/auctiondonate' , function(req , res) {
 
 
 // Senario 1 Wallet 1000 Bath
-app.post('/decreasemoney' , function(req , res) {
+app.post('/decreasemoney', function (req, res) {
     const decrease = req.body.decrease;
     const userid = req.body.userid
 
     const sql = 'UPDATE users SET users.users_money = users.users_money - ? WHERE users.users_id = ?'
-    con.query(sql , [decrease , userid] , function(err ,result) {
+    con.query(sql, [decrease, userid], function (err, result) {
 
     })
 });
 
-app.post('/numberofmoney' , function( req ,res) {
+app.post('/numberofmoney', function (req, res) {
     const userid = req.body.userid;
 
     const sql = 'SELECT users.users_money FROM users WHERE users.users_id = ?'
-    con.query(sql , [userid] , function(err , result) {
-        if(err) {
+    con.query(sql, [userid], function (err, result) {
+        if (err) {
             console.log(err);
             res.status(500).send('Cannot Get Number of money')
         }
@@ -656,14 +687,14 @@ app.post('/doauction', (req, res) => {
 
     const sql = 'INSERT INTO bidder (bidder.bidder_price , bidder.bidder_time , bidder.bidder_userid , bidder.bidder_auctionid) VALUES (? , CURRENT_TIMESTAMP , ? , ?)';
     con.query(sql, [price, userid, auctionid], function (err, result) {
-        if(err) {
+        if (err) {
             console.log(err);
             res.status(500).send('Database Error')
         }
         else {
             const sql = 'UPDATE auction SET auction.auction_endprice = ? , auction.auction_winner = ? WHERE auction.auction_id = ?'
-            con.query(sql , [price  , userid , auctionid] , function(err ,result) {
-                if(err) {
+            con.query(sql, [price, userid, auctionid], function (err, result) {
+                if (err) {
                     console.log(err);
                     res.status(500).send('Database Error')
                 }
@@ -677,28 +708,28 @@ app.post('/doauction', (req, res) => {
 });
 
 // เตรียมไว้สำหรับการบริจาค
-app.post('/dodonate' , function(req , res) {
+app.post('/dodonate', function (req, res) {
     const postid = req.body.postid;
     const pricedonate = req.body.pricedonate;
     const userid = req.body.userid
 
     const sql = 'INSERT INTO donater(donater.donater_price , donater.donater_when , donater.donater_userdonateid , donater.donater_donateid) VALUES (? , CURRENT_TIMESTAMP ,? ,?)'
-    con.query(sql , [pricedonate , userid , postid] , function(err , result) {
-        if(err) {
+    con.query(sql, [pricedonate, userid, postid], function (err, result) {
+        if (err) {
             console.log(err);
             res.status(500).send('Cannot Insert Database Error')
         }
         else {
             const sql = 'UPDATE donate SET donate.donate_pricedurring = donate.donate_pricedurring + ? WHERE donate.donate_id = ?'
-            con.query(sql , [pricedonate , postid] , function(err , resp) {
-                if(err) {
+            con.query(sql, [pricedonate, postid], function (err, resp) {
+                if (err) {
                     console.log(err);
                     res.status(500).send('Cannot Update Donate Table')
                 }
                 else {
                     const sql = 'UPDATE users SET users.users_money = users.users_money - ? WHERE users.users_id = ?'
-                    con.query(sql , [pricedonate , userid] , function(err , data) {
-                        if(err) {
+                    con.query(sql, [pricedonate, userid], function (err, data) {
+                        if (err) {
                             console.log(err);
                             res.status(500).send('Cannot Update User Table')
                         }
