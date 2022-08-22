@@ -1015,7 +1015,7 @@ app.post('/projectendhistiry' , (req , res) => {
 // All Data Project For Senario
 app.get('/alldataprojectforsenario', function (req, res) {
 
-    const sql = 'SELECT donate.donate_id , donate.donate_name , donate.donate_area , donate.donate_pricedurring , DATEDIFF(donate.donate_enddate , donate.donate_startdate) AS timeout , 100 / donate.donate_startprice * donate.donate_pricedurring - 100 / donate.donate_startprice * donate.donate_pricedurring % 1 AS "percen" , COUNT(auction.auction_id)/4 AS "numberauction" , MIN(picdonate.picdonate_id) AS "picid" , MIN(picdonate.picdonate_name) AS "namepic" FROM donate JOIN auction ON auction.auction_donateID = donate.donate_id JOIN picdonate ON picdonate.picdonate_donateid = donate.donate_id GROUP BY donate.donate_id';
+    const sql = 'SELECT donate.donate_id , donate.donate_name , donate.donate_area , donate.donate_pricedurring , DATEDIFF(donate.donate_enddate , donate.donate_startdate) AS timeout , 100 / donate.donate_startprice * donate.donate_pricedurring - 100 / donate.donate_startprice * donate.donate_pricedurring % 1 AS "percen", MIN(picdonate.picdonate_id) AS "picid" , MIN(picdonate.picdonate_name) AS "namepic" , COUNT(auction.auction_id)/3 AS "numberauction" FROM donate JOIN picdonate ON picdonate.picdonate_donateid = donate.donate_id LEFT OUTER JOIN auction ON auction.auction_donateID = donate.donate_id GROUP BY donate.donate_id';
     con.query(sql, function (err, result) {
         if (err) {
             console.log(err);
@@ -1502,6 +1502,63 @@ app.post('/nonapproveauction', (req, res) => {
         }
         else {
             res.send('/request')
+        }
+    })
+});
+
+//  สำหรับเรียกข้อมูลการประมูลทั้งหมดสำหรับ Admin
+app.get('/admindataallauctionnotend' , (req , res) => {
+    const sql = 'SELECT auction.auction_id , auction.auction_name , DATEDIFF(auction.auction_enddate , CURRENT_DATE) AS "Timeout" , auction.auction_endprice , donate.donate_name , MIN(picauction.picaution_name) AS "picname" FROM auction JOIN donate ON auction.auction_donateID = donate.donate_id JOIN picauction ON picauction.picauction_auctionid = auction.auction_id AND auction.auction_status = 2 GROUP BY auction.auction_id'
+    con.query(sql , function(err, resultdataallauction) {
+        if(err) {
+            console.log(err);
+            res.status(500).send('Cannot Get Data all auction for Admin Please Check Database')
+        }
+        else {
+            res.send(resultdataallauction)
+        }
+    })
+});
+
+
+//  สำหรับ  Admin เช็คการประมูลทที่จบไปแล้ว
+app.get('/admindataendauction' , (req , res) => {
+    const sql = 'SELECT auction.auction_id , auction.auction_name , DATEDIFF(auction.auction_enddate , CURRENT_DATE) AS "Timeout" , auction.auction_endprice , donate.donate_name , MIN(picauction.picaution_name) AS "picname" FROM auction JOIN donate ON auction.auction_donateID = donate.donate_id JOIN picauction ON picauction.picauction_auctionid = auction.auction_id AND auction.auction_status = 4 GROUP BY auction.auction_id'
+    con.query(sql , function(err , resultdataendauction) {
+        if(err) {
+            console.log(err);
+            res.status(500).send('Cannot Get Data End Auction for Admin Please Check Database')
+        }
+        else {
+            res.send(resultdataendauction)
+        }
+    });
+});
+
+//  สำหรับดูรายการประมูลที่ Admin เป็นคนเปิด
+app.get('/dataaucationforopenbyadmin' , (req , res) => {
+    const sql = 'SELECT auction.auction_id , auction.auction_name , DATEDIFF(auction.auction_enddate , CURRENT_DATE) AS "Timeout" , auction.auction_endprice , auction.auction_winner , donate.donate_name , users.users_name , MIN(picauction.picaution_name) AS "picname" FROM auction JOIN donate ON auction.auction_donateID = donate.donate_id JOIN users ON users.users_id = auction.auction_winner JOIN picauction ON auction.auction_id = picauction.picauction_auctionid AND users.users_role = 2 AND auction.auction_status = 2 GROUP BY auction.auction_id'
+    con.query(sql , function(err ,resultdataauctionforopenbuadmin) {
+        if(err) {
+            console.log(err);
+            res.status(500).send('Cannot Get Data Detail auction open by Admin')
+        }
+        else {
+            res.send(resultdataauctionforopenbuadmin);
+        }
+    })
+});
+
+//  สำหรับดูรายการที่ประมูเสร็จสิ้นที่ต้องส่งของ รายการที่ Admin เป็นคนเปิด สำหรับต้องส่งของ
+app.get('/dataendauctionforopenbyadmin' , (req , res) => {
+    const sql = 'SELECT auction.auction_id , auction.auction_name , DATEDIFF(auction.auction_enddate , CURRENT_DATE) AS "Timeout" , auction.auction_endprice , auction.auction_winner , donate.donate_name , users.users_name , MIN(picauction.picaution_name) AS "picname" FROM auction JOIN donate ON auction.auction_donateID = donate.donate_id JOIN users ON users.users_id = auction.auction_winner JOIN picauction ON auction.auction_id = picauction.picauction_auctionid AND users.users_role = 2 AND auction.auction_status = 4 GROUP BY auction.auction_id'
+    con.query(sql , function(err ,resultdataendauctionforopenbyadmin) {
+        if(err) {
+            console.log(err);
+            res.status(500).send('Cannot Get Data Detail end Auction open by admin')
+        }
+        else {
+            res.send(resultdataendauctionforopenbyadmin);
         }
     })
 })
