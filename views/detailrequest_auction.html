@@ -51,6 +51,7 @@
     <script
         src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
     <script src="src/sidebar_scripts.js"></script>
+    <script src="src/detailrequest_auction.js"></script>
 
 
 
@@ -101,115 +102,117 @@
             <h5 id="name_item" class="head_name-item">กระเป๋าสีแดง</h5>
             <p>วันที่ที่ส่งเรื่องในการขอเปิดโครงการ <span id="datetime"> 22/01/2565</span></p>
 
+
             <div class="row">
                 <div class="col-md-8">
-                    <!--Carousel Wrapper-->
-                    <div id="multi-item-example" class="carousel slide carousel-multi-item mb-5" data-ride="carousel">
+                    <div class="container-fluid" id="alldetailauction">
+                        <!--Carousel Wrapper-->
+                        <!-- <div id="multi-item-example" class="carousel slide carousel-multi-item mb-5"
+                            data-ride="carousel"> -->
 
-                        <!--Controls-->
-                        <div class="controls-top">
-                            <a class="btn-floating" href="#multi-item-example" data-slide="prev"><i
-                                    class="fa fa-chevron-left"></i></a>
-                            <a class="btn-floating" href="#multi-item-example" data-slide="next"><i
-                                    class="fa fa-chevron-right"></i></a>
-                        </div>
-                        <!--/.Controls-->
+                            <!--Controls-->
+                            <!-- <div class="controls-top">
+                                <a class="btn-floating" href="#multi-item-example" data-slide="prev"><i class="fa fa-chevron-left"></i></a>
+                                <a class="btn-floating" href="#multi-item-example" data-slide="next"><i class="fa fa-chevron-right"></i></a>
+                            </div> -->
+                            <!--/.Controls-->
 
-                        <!--Indicators-->
-                        <ol class="carousel-indicators">
-                            <li data-target="#multi-item-example" data-slide-to="0" class="active"></li>
-                            <li data-target="#multi-item-example" data-slide-to="1"></li>
-                        </ol>
-                        <!--/.Indicators-->
+                            <!--Indicators-->
+                            <!-- <ol class="carousel-indicators">
+                                <li data-target="#multi-item-example" data-slide-to="0" class="active"></li>
+                                <li data-target="#multi-item-example" data-slide-to="1"></li>
+                            </ol> -->
+                            <!--/.Indicators-->
 
-                        <!--Slides-->
-                        <div class="carousel-inner" role="listbox">
-                            <!--First slide-->
-                            <div class="carousel-item active">
-                                <div class="row">
-                                    <div class="col-md-4">
-                                        <div class="card mb-2">
-                                            <img class="card-img-top"
-                                                src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(34).jpg"
-                                                alt="Card image cap">
+                            <!--Slides-->
+                            <!-- <div class="carousel-inner" role="listbox"> -->
+                                <!--First slide-->
+                                <!-- <div class="carousel-item active">
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="card mb-2">
+                                                <img class="card-img-top"
+                                                    src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(34).jpg"
+                                                    alt="Card image cap">
 
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-4 ">
+                                            <div class="card mb-2">
+                                                <img class="card-img-top"
+                                                    src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(18).jpg"
+                                                    alt="Card image cap">
+
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 ">
+                                            <div class="card mb-2">
+                                                <img class="card-img-top"
+                                                    src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(18).jpg"
+                                                    alt="Card image cap">
+
+                                            </div>
                                         </div>
                                     </div>
 
-                                    <div class="col-md-4 ">
-                                        <div class="card mb-2">
-                                            <img class="card-img-top"
-                                                src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(18).jpg"
-                                                alt="Card image cap">
+                                </div> -->
+                                <!--/.First slide-->
 
+                                <!--Second slide-->
+                                <!-- <div class="carousel-item ">
+
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="card mb-2">
+                                                <img class="card-img-top"
+                                                    src="https://mdbootstrap.com/img/Photos/Horizontal/City/4-col/img%20(60).jpg"
+                                                    alt="Card image cap">
+
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="col-md-4 ">
-                                        <div class="card mb-2">
-                                            <img class="card-img-top"
-                                                src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(18).jpg"
-                                                alt="Card image cap">
 
+                                        <div class="col-md-4 ">
+                                            <div class="card mb-2">
+                                                <img class="card-img-top"
+                                                    src="https://mdbootstrap.com/img/Photos/Horizontal/City/4-col/img%20(47).jpg"
+                                                    alt="Card image cap">
+
+                                            </div>
                                         </div>
-                                    </div>
-                                </div>
+                                        <div class="col-md-4 ">
+                                            <div class="card mb-2">
+                                                <img class="card-img-top"
+                                                    src="https://mdbootstrap.com/img/Photos/Horizontal/City/4-col/img%20(47).jpg"
+                                                    alt="Card image cap">
 
-                            </div>
-                            <!--/.First slide-->
-
-                            <!--Second slide-->
-                            <div class="carousel-item">
-
-                                <div class="row">
-                                    <div class="col-md-4">
-                                        <div class="card mb-2">
-                                            <img class="card-img-top"
-                                                src="https://mdbootstrap.com/img/Photos/Horizontal/City/4-col/img%20(60).jpg"
-                                                alt="Card image cap">
-
+                                            </div>
                                         </div>
-                                    </div>
 
-                                    <div class="col-md-4 ">
-                                        <div class="card mb-2">
-                                            <img class="card-img-top"
-                                                src="https://mdbootstrap.com/img/Photos/Horizontal/City/4-col/img%20(47).jpg"
-                                                alt="Card image cap">
-
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4 ">
-                                        <div class="card mb-2">
-                                            <img class="card-img-top"
-                                                src="https://mdbootstrap.com/img/Photos/Horizontal/City/4-col/img%20(47).jpg"
-                                                alt="Card image cap">
-
-                                        </div>
                                     </div>
 
-                                </div>
+                                </div> -->
+                                <!--/.Second slide-->
 
-                            </div>
-                            <!--/.Second slide-->
+                            <!-- </div> -->
+                            <!--/.Slides-->
 
-                        </div>
-                        <!--/.Slides-->
-
+                        <!-- </div> -->
+                        <!--/.Carousel Wrapper-->
                     </div>
-                    <!--/.Carousel Wrapper-->
 
 
                     <!-- details auction item -->
                     <div class="card " id="card-detail-auntion">
                         <li><span class="text_detail">รหัสสินค้า: </span><span id="code_item">1235477</span></li>
-                        <li><span class="text_detail">ชื่อสินค้า: </span><span id="name_item">กระเป๋าเป้สีแดง</span>
+                        <li><span class="text_detail">ชื่อสินค้า: </span><span id="name_item_descript">กระเป๋าเป้สีแดง</span>
                         </li>
                         <li class="text_detail">รายละเอียด:</li>
                         <li id="detail_item">กระเป๋าเป้ Converse สีแดงรูปแบบสมัยใหม่
                             ขนาด: กว้าง 25 ยาว 30
                             น้ำหนัก: 100 kg</li>
                         <li class="text_detail">ราคาเริ่มต้น :</li>
-                        <li class="start_price">15.0 bath.</li>
+                        <li class="start_price"><span id="text_price">15.0</span> bath.</li>
                     </div>
                     <!-- /details auction item -->
 
@@ -223,13 +226,13 @@
                             </div>
                             <div class="col-md-8">
                                 <div class="card-body">
-                                    <h5 class="card-title">บ้านพักพิงเพื่อสุนัขและแมวจรจัด โดย หมากระสอบ </h5>
-                                    <li>จ. เพชรบูรณ์</li>
-                                    <li><i class="fa fa-clock-o" aria-hidden="true"> เหลืออีก 5 วัน</i></li>
-                                    <li><img src="img/icons/dollar-icon.png" width="7%"> 100000 bath.</li>
+                                    <h5 class="card-title" id="projectname">บ้านพักพิงเพื่อสุนัขและแมวจรจัด โดย หมากระสอบ </h5>
+                                    <li id="projectarea">จ. เพชรบูรณ์</li>
+                                    <li><i class="fa fa-clock-o" aria-hidden="true" > เหลืออีก <span id="projectdeadline">5</span> วัน</i></li>
+                                    <li><img src="img/icons/dollar-icon.png" width="7%">  <span id="projectprice">100000</span> bath.</li>
                                     <div class="progress mt-3">
                                         <div class="progress-bar bg-warning" role="progressbar" style="width: 75%"
-                                            aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">75%</div>
+                                            aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"><span id="projectpercen">75</span> </div>
                                     </div>
                                 </div>
                             </div>
@@ -237,8 +240,8 @@
                     </div>
 
                     <!-- /project need to donate  -->
-                    <button type="button" class="btn btn-success ml-2"  id="approve_item">อนุมัติ</button>
-                    <button type="button" class="btn btn-danger"  id="notapprove_item">ไม่อนุมัติ</button>
+                    <button type="button" class="btn btn-success ml-2" id="approve_item">อนุมัติ</button>
+                    <button type="button" class="btn btn-danger" id="notapprove_item">ไม่อนุมัติ</button>
                 </div>
                 <!-- /col 1 -->
 
@@ -246,15 +249,17 @@
                 <div class="col">
                     <div class="card" id="detail_owner">
                         <h5 style="font-weight: bold">ข้อมูล</h5>
-                        <li><span  class="text_detail">ชื่อ</span> <span id="ownername">นาง พิสมัย  มั่งมี </span></li>
-                        <li><span  class="text_detail">เสนอโครงการในนาม :</span> <span id="type_owner"> บุคคลทั่วไป</span></li>
-                        <li><span  class="text_detail">ที่อยู่ :</span></li>
-                        <li id="address">41/85  หมู่ 2 ตำบล โคกอีเลิ้ง 
-                            อำเภอในเมือง   จังหวัดอุดรธนี  54000</li>
-                            <li class="text_detail">เบอร์ติดต่อ :</li>
-                            <li id="phonenumber">0852147444</li>
-                            <li class="text_detail">อีเมล์</li>
-                            <li>pisamai@kagoo.com</li>
+                        <li><span class="text_detail">ชื่อ</span> <span id="ownername">นาง พิสมัย มั่งมี </span>
+                        </li>
+                        <li><span class="text_detail">เสนอโครงการในนาม :</span> <span id="type_owner">
+                                บุคคลทั่วไป</span></li>
+                        <li><span class="text_detail">ที่อยู่ :</span></li>
+                        <li id="address">41/85 หมู่ 2 ตำบล โคกอีเลิ้ง
+                            อำเภอในเมือง จังหวัดอุดรธนี 54000</li>
+                        <li class="text_detail">เบอร์ติดต่อ :</li>
+                        <li id="phonenumber">0852147444</li>
+                        <li class="text_detail">อีเมล์</li>
+                        <li id="emailowner">pisamai@kagoo.com</li>
 
                     </div>
 
@@ -262,6 +267,8 @@
                 <!-- /col 2 -->
 
             </div>
+
+
 
         </div>
     </div>
