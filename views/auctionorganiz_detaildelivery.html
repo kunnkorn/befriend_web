@@ -39,6 +39,7 @@
     <!-- <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script> -->
     <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>
     <script src="https://cdn.datatables.net/responsive/2.2.6/js/dataTables.responsive.min.js"></script>
+    <script src="src/auctionorganiz_detaildelivery.js"></script>
 </head>
 
 <body>
@@ -56,12 +57,12 @@
                         ข้อมูลคำขอ</span></a></li>
                 <li><a href="/allproject"><span> <img src="img/project.png" width="20px"></span>
                         โครงการ</a></li>
-                <li><a href="#"><span><img src="img/auction.png" width="23px"></span> การประมูล</a></li>
+                <li><a href="/auction"><span><img src="img/auction.png" width="23px"></span> การประมูล</a></li>
                 <li><a href="/auction_organiz"><span><img src="img/home.png" width="23px"></span>
                         การประมูลขององค์กร</a></li>
-                <li><a href="#"><span><img src="img/delivery-truck.png" width="23px"></span>
+                <li><a href="/status-delivery"><span><img src="img/delivery-truck.png" width="23px"></span>
                         สถานะสินค้า</a></li>
-                <li><a href="./admin_login.html"><span><img src="img/logout.png" width="23px"></span>
+                <li><a href="/logout"><span><img src="img/logout.png" width="23px"></span>
                         ออกจากระบบ</a></li>
                 <br><br><br>
                 <hr style="color: black; size: 8px; width: 80%; vertical-align: end;">
@@ -88,15 +89,15 @@
                 <div class="col-lg-5">
                     <div class="card">
                         <div class="row no-gutters">
-                            <div class="col-md-4 p-2">
-                                <img src="img/watch.jpg" class="card-img" width="50px" height="150px"
-                                    style="object-fit: cover">
+                            <div class="col-md-4 p-2" id="picauction">
+                                <!-- <img src="img/watch.jpg" class="card-img" width="50px" height="150px"
+                                    style="object-fit: cover"> -->
                             </div>
                             <div class="col-md-8">
                                 <div class="card-body">
-                                    <h5 class="card-title">นาฬิกาลิมิเตทเอดิชัน </h5>
-                                    <p>โครงการ ช่วยน้อง</p>
-                                    <p>15 บาท</p>
+                                    <h5 class="card-title" id="auctionname">นาฬิกาลิมิเตทเอดิชัน </h5>
+                                    <p id="donatename">โครงการ ช่วยน้อง</p>
+                                    <p><span id="auctionprice">15</span> บาท</p>
 
                                 </div>
                             </div>
@@ -108,26 +109,26 @@
                         <div class="card-body">
                             <div class="container-trac">
                                 <h5 class="card-title">เลขพัสดุ</h5>
-                                <h5 id="numtracking">Kerry :TH123456666</h5>
+                                <h5> <span id="nametracking" >Kerry :</span><span id="tracknumber">TH123456666</span></h5>
 
                             </div>
                             
                             <i class="fa fa-user" aria-hidden="true"> <span class="card-text ml-4">ชื่อผู้รับ</span></i>
                             <ul>
-                                <li id="name">พิสมัย ตึ้งโป๊ะ</li>
+                                <li id="usersname">พิสมัย ตึ้งโป๊ะ</li>
                             </ul>
                             <i class="fa fa-map-marker mt-3" aria-hidden="true"> <span
                                     class="card-text ml-4 ">ที่อยู่การจัดส่ง</span></i>
                             <ul>
-                                <li id="address">77/25 หมู่บ้านอีเลิ้ง โครงการพัฒนาชลบท
-                                    อำเภอสีสัน จังหวัดแฉิงฉับ 74566</li>
+                                <li ><span id="address">77/25 หมู่บ้านอีเลิ้ง โครงการพัฒนาชลบท</span> 
+                                    อำเภอ <span id="userdistrict">สีสัน</span> ตำบล <span id="userssubdistrict">ในเมือง</span> จังหวัด <span id="userprovince">แฮิงฉับ</span> <span id="postcode">57100</span></li>
                                 <li id="phonenum">0874122933</li>
                             </ul>
                         </div>
                     </div>
                     <div class="container-delivery">
                         <span> ค่าส่ง</span>
-                        <span id="delivery_price">150.0 bath.</span>
+                        <span> <span id="delivery_price">150.0</span> bath.</span>
                     </div>
                     <hr>
                     <div class="container-delivery">
@@ -171,7 +172,7 @@
                   </div>
                   <div class="modal-footer">
                       <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                      <button type="button" class="btn btn-warning" type="submit">Save</button>
+                      <button type="button" class="btn btn-warning" id="btn-update">Save</button>
                   </div>
               </div>
           </div>

@@ -9,7 +9,9 @@ $(document).ready(function () {
             url: '/loginadmin',
             data: { username: username, password: password },
         }).done(function (data, state, xhr) {
-            window.location.replace(data)
+            // Keep token to local storage
+            window.sessionStorage.token = data.token;
+            window.location.replace(data.url)
         }).fail(function (xhr, state) {
             console.log(xhr)
         })

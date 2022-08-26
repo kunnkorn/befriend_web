@@ -37,7 +37,7 @@ $(document).ready(function () {
             { title: "ลำดับ", defaultContent: '' },
             { data: "donate_name", title: "ชื่อโครงการ" },
             { data: "donate_responperson", title: "ชื่อเจ้าของโครงการ" },
-            { data: "donate_percen", title: "สถานะโครงการ" },
+            { data: "percen", title: "สถานะโครงการ" },
             { data: "donate_payment_status", title: "สถานะการโอนเงิน" },
             { title: "รายละเอียดโครงการ", defaultContent: "<input type = 'button' class = 'btn btn-detail' value='รายละเอียด' style = 'width: 90%; border-radius: 8px; background-color: #7360ED; color: #FFFFFF;' >" },
             { title: "อัพเดทโครงการ", defaultContent: "<input type = 'button' class = 'btn btn-update' value='อัพเดทโครงการ' style='width: 90%; border-radius: 8px; background-color: #009DFA; color: #FFFFFF;'>" }
