@@ -1064,7 +1064,7 @@ app.post('/updateprojectwhenprojectend' , (req , res) => {
     const updateprogress = req.body.updateprogress;
     const updateactivity = req.body.updateactivity;
 
-    const sql = 'UPDATE donate SET donate.donate_updateprogress = ? , donate.donate_activityprogress = ? , donate.updateprojectwhenprojectend = 2 WHERE donate.donate_id = ?'
+    const sql = 'UPDATE donate SET donate.donate_updateprogress = ? , donate.donate_activityprogress = ? , donate.donate_approveupdateprogress = 2 WHERE donate.donate_id = ?'
     con.query(sql ,[updateprogress , updateactivity , parseInt(projectid)] , (err , _resulttoupdate) => {
         if(err) {
             console.log(err);
@@ -1100,7 +1100,7 @@ app.post('/updateprojectwhenprojectend' , (req , res) => {
 
 // --------------- แสดงโครงการที่อัพเดทแล้ว ------------------------
 app.get('/showlistprojectupdate' , (req , res) => {
-    const sql = 'SELECT donate.donate_id , donate.donate_name , donate.donate_updateprogress , MIN(progresspic.progresspic_name) AS "picname" FROM donate JOIN progresspic ON donate.donate_id = progresspic.progresspic_donateid AND donate.donate_status = 3 OR donate.donate_status = 4 AND donate.donate_approveupdateprogress = 2 GROUP BY donate.donate_id'
+    const sql = 'SELECT donate.donate_id , donate.donate_name , donate.donate_updateprogress , MIN(progresspic.progresspic_name) AS "picname" FROM donate JOIN progresspic ON donate.donate_id = progresspic.progresspic_donateid AND donate.donate_status = 4 AND donate.donate_approveupdateprogress = 2 GROUP BY donate.donate_id'
     con.query(sql , (err , resultlistprojectupdate) => {
         if(err) {
             console.log(err);
@@ -1115,7 +1115,7 @@ app.get('/showlistprojectupdate' , (req , res) => {
 app.post('/showdetailprojectupdate' , (req , res) => {
     const projectid = req.body.projectid;
     
-    const sql = 'SELECT donate.donate_id , donate.donate_name , donate.donate_updateprogress , donate.donate_activityprogress , progresspic.progresspic_name AS "picname" FROM donate JOIN progresspic ON donate.donate_id = progresspic.progresspic_donateid AND donate.donate_status = 3 OR donate.donate_status = 4 AND donate.donate_approveupdateprogress = 2 AND donate.donate_id = ?'
+    const sql = 'SELECT donate.donate_id , donate.donate_name , donate.donate_updateprogress , donate.donate_activityprogress , progresspic.progresspic_name AS "picname" FROM donate JOIN progresspic ON donate.donate_id = progresspic.progresspic_donateid AND donate.donate_status = 4 AND donate.donate_approveupdateprogress = 2 AND donate.donate_id = ?'
     con.query(sql , [projectid] , (err , resultdetailprojectupdate) => {
         if(err) {
             console.log(err);
@@ -1129,7 +1129,7 @@ app.post('/showdetailprojectupdate' , (req , res) => {
 // All Data Project For Senario
 app.get('/alldataprojectforsenario', function (req, res) {
 
-    const sql = 'SELECT donate.donate_id , donate.donate_name , donate.donate_area , donate.donate_pricedurring , DATEDIFF(donate.donate_enddate , donate.donate_startdate) AS timeout , 100 / donate.donate_startprice * donate.donate_pricedurring - 100 / donate.donate_startprice * donate.donate_pricedurring % 1 AS "percen", MIN(picdonate.picdonate_id) AS "picid" , MIN(picdonate.picdonate_name) AS "namepic" , COUNT(auction.auction_id)/3 AS "numberauction" FROM donate JOIN picdonate ON picdonate.picdonate_donateid = donate.donate_id AND donate.donate_status = 2 LEFT OUTER JOIN auction ON auction.auction_donateID = donate.donate_id  GROUP BY donate.donate_id';
+    const sql = 'SELECT donate.donate_id , donate.donate_name , donate.donate_area , donate.donate_pricedurring , DATEDIFF(donate.donate_enddate , donate.donate_startdate) AS timeout , 100 / donate.donate_startprice * donate.donate_pricedurring - 100 / donate.donate_startprice * donate.donate_pricedurring % 1 AS "percen", MIN(picdonate.picdonate_id) AS "picid" , MIN(picdonate.picdonate_name) AS "namepic" , ROUND(COUNT(auction.auction_name)/4) AS "numberauction" FROM donate JOIN picdonate ON picdonate.picdonate_donateid = donate.donate_id AND donate.donate_status = 2 LEFT JOIN auction ON auction.auction_donateID = donate.donate_id  GROUP BY donate.donate_id';
     con.query(sql, function (err, result) {
         if (err) {
             console.log(err);
@@ -1144,7 +1144,7 @@ app.get('/alldataprojectforsenario', function (req, res) {
 app.post('/listprojectfortype' , (req , res) => {
     const typeid = req.body.typeid;
 
-    const sql = 'SELECT donate.donate_id , donate.donate_name , donate.donate_area , donate.donate_pricedurring , DATEDIFF(donate.donate_enddate , donate.donate_startdate) AS timeout , 100 / donate.donate_startprice * donate.donate_pricedurring - 100 / donate.donate_startprice * donate.donate_pricedurring % 1 AS "percen", MIN(picdonate.picdonate_id) AS "picid" , MIN(picdonate.picdonate_name) AS "namepic" , COUNT(auction.auction_id)/3 AS "numberauction" FROM donate JOIN picdonate ON picdonate.picdonate_donateid = donate.donate_id AND donate.donate_status = 2 AND donate.donate_types = ? LEFT OUTER JOIN auction ON auction.auction_donateID = donate.donate_id GROUP BY donate.donate_id'
+    const sql = 'SELECT donate.donate_id , donate.donate_name , donate.donate_area , donate.donate_pricedurring , DATEDIFF(donate.donate_enddate , donate.donate_startdate) AS timeout , 100 / donate.donate_startprice * donate.donate_pricedurring - 100 / donate.donate_startprice * donate.donate_pricedurring % 1 AS "percen", MIN(picdonate.picdonate_id) AS "picid" , MIN(picdonate.picdonate_name) AS "namepic" , ROUND(COUNT(auction.auction_id)/4) AS "numberauction" FROM donate JOIN picdonate ON picdonate.picdonate_donateid = donate.donate_id AND donate.donate_status = 2 AND donate.donate_types = ? LEFT OUTER JOIN auction ON auction.auction_donateID = donate.donate_id GROUP BY donate.donate_id'
     con.query(sql , [typeid] , (err , resultlistprojectbytype) => {
         if(err) {
             console.log(err);
@@ -1300,7 +1300,7 @@ app.post('/dodonate', function (req, res) {
 // Page Route
 // Login Page
 app.get('/', function (req, res) {
-    res.sendFile(path.join(__dirname, './views/admin_login.html'))
+    res.sendFile(path.join(__dirname, './views/admin_login.html'));
 })
 
 // Request
