@@ -37,7 +37,7 @@ $(document).ready(function () {
             // tracknumber
             $('#tracknumber').text(data[0].auction_numbertransport)
             // usersname
-            $('#username').text(data[0].users_name)
+            $('#usersname').text(data[0].users_name)
             // address
             $('#address').text(data[0].users_address)
             // userdistrict

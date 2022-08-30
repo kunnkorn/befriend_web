@@ -474,7 +474,7 @@ app.post('/paymentauctioncart', function (req, res) {
             res.status(500).send('Database Error Cannot Update')
         }
         else {
-            const sql = 'UPDATE auction SET auction.auction_payment = 2 WHERE auction.auction_id = ?'
+            const sql = 'UPDATE auction SET auction.auction_payment = 2 , auction_transprot = 2 WHERE auction.auction_id = ?'
             for (let i = 0; i < auctionid.length; i++) {
                 con.query(sql, [auctionid[i]['auction_id']], function (err, resultupdateauction) {
                     if (err) {
@@ -993,7 +993,7 @@ app.post('/updatetracktransport', (req, res) => {
 app.post('/lisofallauction', (req, res) => {
     const userid = req.body.userid;
 
-    const sql = 'SELECT auction.auction_id , auction.auction_name , auction.auction_endprice + auction.auction_deliveryprice AS "allprice" , auction.auction_status , auction.auction_payment , auction.auction_transprot , donate.donate_name , MIN(picauction.picaution_name) AS "picname" FROM auction JOIN donate ON auction.auction_donateID = donate.donate_id AND auction.auction_status != 1 AND auction.auction_status != 3 AND auction.auction_owneruserID = ? JOIN picauction ON picauction.picauction_auctionid = auction.auction_id GROUP BY auction.auction_id'
+    const sql = 'SELECT auction.auction_id , auction.auction_name , auction.auction_endprice + auction.auction_deliveryprice AS "allprice" , auction.auction_status , auction.auction_payment , auction.auction_transprot , DATEDIFF(auction.auction_enddate , CURRENT_DATE) AS "timeout" ,donate.donate_name , MIN(picauction.picaution_name) AS "picname" FROM auction JOIN donate ON auction.auction_donateID = donate.donate_id AND auction.auction_status != 1 AND auction.auction_status != 3 AND auction.auction_owneruserID = ? JOIN picauction ON picauction.picauction_auctionid = auction.auction_id GROUP BY auction.auction_id'
     con.query(sql, [userid], function (err, resultlistofauction) {
         if (err) {
             console.log(err);
@@ -1129,7 +1129,7 @@ app.post('/showdetailprojectupdate' , (req , res) => {
 // All Data Project For Senario
 app.get('/alldataprojectforsenario', function (req, res) {
 
-    const sql = 'SELECT donate.donate_id , donate.donate_name , donate.donate_area , donate.donate_pricedurring , DATEDIFF(donate.donate_enddate , donate.donate_startdate) AS timeout , 100 / donate.donate_startprice * donate.donate_pricedurring - 100 / donate.donate_startprice * donate.donate_pricedurring % 1 AS "percen", MIN(picdonate.picdonate_id) AS "picid" , MIN(picdonate.picdonate_name) AS "namepic" , ROUND(COUNT(auction.auction_name)/4) AS "numberauction" FROM donate JOIN picdonate ON picdonate.picdonate_donateid = donate.donate_id AND donate.donate_status = 2 LEFT JOIN auction ON auction.auction_donateID = donate.donate_id  GROUP BY donate.donate_id';
+    const sql = 'SELECT donate.donate_id , donate.donate_name , donate.donate_area , donate.donate_pricedurring , DATEDIFF(donate.donate_enddate , CURRENT_DATE) AS timeout , 100 / donate.donate_startprice * donate.donate_pricedurring - 100 / donate.donate_startprice * donate.donate_pricedurring % 1 AS "percen", MIN(picdonate.picdonate_id) AS "picid" , MIN(picdonate.picdonate_name) AS "namepic" , ROUND(COUNT(auction.auction_name)/4) AS "numberauction" FROM donate JOIN picdonate ON picdonate.picdonate_donateid = donate.donate_id AND donate.donate_status = 2 LEFT JOIN auction ON auction.auction_donateID = donate.donate_id  GROUP BY donate.donate_id';
     con.query(sql, function (err, result) {
         if (err) {
             console.log(err);
