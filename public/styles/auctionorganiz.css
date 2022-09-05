@@ -1,0 +1,228 @@
+
+
+/* =====list auction ==== */
+#list-openauction{
+    margin-left: 3%;
+    margin-top: 2%;
+}
+
+#btnback {
+    cursor: pointer;
+}
+#alllist_auction{
+    text-align: center;
+    width: 100%;
+    /* font-size: 15px; */
+}
+table.dataTable thead tr {
+    background-color: #FFC700;
+    text-align: center;
+  }
+  .table thead,
+.table th {text-align: center;}
+ 
+
+
+/* li a {
+    color: #cac8c8;
+}
+
+li img {
+    color: #cac8c8;
+}
+
+
+
+#webicon {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+} */
+
+
+.btn-auction{
+    font-size: 18px;
+    background-color: #cac8c8;
+    color: #868686;
+    border-radius: 10px;
+    height: 55px;
+    width: 20%;
+    border: none;
+}
+.btn-auction:active{
+    font-size: 18px;
+    background-color: white;
+    color: black;
+    border: 2px solid #FFC700;
+    border-radius: 10px;
+    height: 55px;
+    width: 20%;
+}
+.btn-auction:focus{
+    font-size: 18px;
+    background-color: white;
+    color: black;
+    border: 2px solid #FFC700;
+    border-radius: 10px;
+    height: 55px;
+    width: 20%;
+}
+
+
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 3%;
+
+}
+
+.img {
+    width: 56px;
+    height: 50px;
+    border-radius: 10px;
+    background-color: rgb(255, 199, 0, 0.2);
+    padding: 10%;
+}
+
+#btndelivery {
+    margin-left: 1%;
+    border-style: none;
+    outline: none;
+    border: none;
+    box-shadow: none;
+
+}
+
+#head-auction {
+    font-size: 21px;
+    font-weight: 500
+}
+
+#galeria {
+    margin-top: 40px;
+    display: flex;
+    float: left;
+    flex-wrap: wrap;
+    padding: 0 4px;
+
+}
+
+#galeria img {
+    width: 180px;
+    height: 150px;
+    border-radius: 3px;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+    opacity: 85%;
+}
+
+/* upload button  */
+#uploadtxt {
+    font-size: 16px;
+    font-weight: 600;
+    margin-top: 35px;
+    margin-bottom: 10px;
+}
+
+#open_auction {
+    margin-top: 45px;
+
+}
+
+
+/* Clear floats after the columns */
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+/* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
+
+@media (max-width: 769px) {
+    #content {
+        width: 100%;
+        margin: 0;
+    }
+
+    #btnlistauction,
+    #btnopenauction {
+        width: 45%;
+        font-size: 15px;
+    }
+
+    .open-auction {
+        width: 100%;
+    }
+
+}
+
+
+@media (min-width: 768px) {
+    #text-brand {
+        display: none;
+    }
+
+   .btn-auction{
+        width: 40%;
+        font-size: 18px;
+    }
+
+    .open-auction {
+        width: 80%;
+    }
+}
+
+.btn-auction {
+    width: 25%;
+    font-size: 18px;
+}
+
+label {
+    width: 100%;
+    margin-top: 15px;
+}
+
+.card-input-element {
+    display: none;
+
+}
+
+
+/* .card-input {
+    margin: 10px;
+    padding: 00px;
+} */
+
+.card-input:hover {
+    cursor: pointer;
+}
+
+.card-input-element:checked+.card-input {
+    box-shadow: 0 0 2px 2px yellow;
+}
+
+li {
+    display: block;
+    margin-top: 7px;
+    color: #868686;
+
+}
+
+.card-img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+#open-auction_btn{
+    margin-top: 5%;
+    float: right;
+}
+#txtchooseproject{
+    font-weight: bold;
+    font-size: 20px;
+    
+}
+#col2{
+    margin-top: 3%;
+}
+

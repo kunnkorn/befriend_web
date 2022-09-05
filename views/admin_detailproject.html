@@ -12,6 +12,16 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Sarabun:ital,wght@0,400;1,100&display=swap" rel="stylesheet">
 
+
+    <!-- Bootstrap CSS CDN -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"
+        integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+    <!-- Our Custom CSS -->
+    <link rel="stylesheet" href="styles/sidebar.css">
+    <!-- Scrollbar Custom CSS -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
+
     <link rel="stylesheet" href="styles/detailproject.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -24,28 +34,50 @@
     <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.22/js/dataTables.bootstrap4.min.js"></script>
     <script src="https://cdn.datatables.net/responsive/2.2.6/js/dataTables.responsive.min.js"></script>
+
+
+    <!---------------------------- CDN for side bar  ------------------------------------------------->
+    <!-- jQuery CDN - Slim version (=without AJAX) -->
+    <!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+          integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+          crossorigin="anonymous"></script> -->
+    <!-- Popper.JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"
+        integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ"
+        crossorigin="anonymous"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"
+        integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm"
+        crossorigin="anonymous"></script>
+    <!-- jQuery Custom Scroller CDN -->
+    <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
+
+    <script src="src/sidebar_scripts.js"></script>
     <script src="src/detailallproject.js"></script>
 </head>
 
 <body style="font-family: 'Sarabun', sans-serif;">
 
-    <!-- Vertical Navbar -->
-    <div class="vertical-nav mt-1" id="sidebar">
-        <div class="vertical-menu">
-            <ul class="nav flex-column mt-4">
-                <img src="img/befriend-web_icon.png" width="33%" height="35%" id="webicon">
+
+    <div class="wrapper">
+        <nav id="sidebar">
+            <div class="sidebar-header">
+                <img src="img/befriend-web_icon.png" width="50%" height="35%" id="webicon">
                 <h3 style="text-align: center;">BEFRIEND</h3>
-                <hr style="color: black; size: 8px; width: 80%;">
-                <li><a href="/request"><span><img src="img/mail.png" width="20px"></span>
+                <hr style="color: black; size: 8px; width: 90%;">
+            </div>
+            <ul class="list-unstyled components">
+                <li><a href="/request" ><span><img src="img/mail.png" width="20px"></span>
                         ข้อมูลคำขอ</span></a></li>
                 <li><a href="/allproject" class="active"><span> <img src="img/project.png" width="20px"></span>
                         โครงการ</a></li>
-                <li><a href="#"><span><img src="img/auction.png" width="23px"></span> การประมูล</a></li>
-                <li><a href="#"><span><img src="img/home.png" width="23px"></span>
+                <li><a href="/auction"><span><img src="img/auction.png" width="23px"></span> การประมูล</a></li>
+                <li><a href="/auction_organiz"><span><img src="img/home.png" width="23px"></span>
                         การประมูลขององค์กร</a></li>
-                <li><a href="#"><span><img src="img/delivery-truck.png" width="23px"></span>
+                <li><a href="/status-delivery"><span><img src="img/delivery-truck.png" width="23px"></span>
                         สถานะสินค้า</a></li>
-                <li><a href="./admin_login.html"><span><img src="img/logout.png" width="23px"></span>
+                <li><a href="/logout"><span><img src="img/logout.png" width="23px"></span>
                         ออกจากระบบ</a></li>
                 <br><br><br>
                 <hr style="color: black; size: 8px; width: 80%; vertical-align: end;">
@@ -54,159 +86,170 @@
                         Kun Run</h4>
                 </li>
             </ul>
-        </div>
-    </div>
 
-    <div class="page-content p-4">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-9">
-                    <p id="headertext">แบ่งปันความสุขให้น้องๆเนื่องในวันเด็ก</p>
-                    <p id="datetext">วันที่ส่งเรื่องในการขอเปิดโครงการ : <span id="date">22/01/2565</span></p>
-                    <div class="container-fluid" style="background-color: rgb(231, 233, 235); border-radius: 10px;">
-                        <p style="font-weight: 500; font-size: 25px;">ข้อมูลโครงการ
-                        <p>
+        </nav>
+
+        <div id="content">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <div class="container-fluid">
+                    <button type="button" id="sidebarCollapse" class="btn btn-info">
+                        <i class="fas fa-align-left"></i>
+                        <span>Toggle Sidebar</span>
+                    </button>
+                </div>
+
+            </nav>
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-9">
+                        <p id="headertext">แบ่งปันความสุขให้น้องๆเนื่องในวันเด็ก</p>
+                        <p id="datetext">วันที่ส่งเรื่องในการขอเปิดโครงการ : <span id="date">22/01/2565</span></p>
+                        <div class="container-fluid" style="background-color: rgb(231, 233, 235); border-radius: 10px;">
+                            <p style="font-weight: 500; font-size: 25px;">ข้อมูลโครงการ
+                            <p>
+                                <br>
+                            <p style="font-weight: 600; font-size: 17px;">ประเภทโครงการ : <span id="typename"
+                                    style="font-weight: 400; font-size: 17px;">เยาวชน , ผู้สูงอายุ , ผู้พิการ</span></p>
                             <br>
-                        <p style="font-weight: 600; font-size: 17px;">ประเภทโครงการ : <span id="typename"
-                                style="font-weight: 400; font-size: 17px;">เยาวชน , ผู้สูงอายุ , ผู้พิการ</span></p>
-                        <br>
-                        <p style="font-weight: 600; font-size: 17px;">คำอธิบายโครงการ</p>
-                        <p id="projectdescript">ร่วมสมทบเงินบริจาคค่าอาหาร ทุนการศึกษาให้กับเด็กๆ
-                            ผู้พิการทางสายตาและพาผู้สูงวัยไปร่วมทำกิจกรรมอบข้าวสารอาหารแห้ง
-                            ผ่านทูลนิธิธรรมมิกชนเพื่อคนตาบอดในประเทศไทย จังหวัดเพชรบุรี
-                            และโรงเรียนการศึกษาเด็กตาบอดพิการศ้ำศ้อนชะอำ</p>
-                        <br>
-                        <p style="font-weight: 600; font-size: 17px;">พื้นที่ดำเนินโครงการ</p>
-                        <p id="projectarea">1.มูลนิธีกรรมิกชน เพื่อนคนตาบอดในประเทศไทย ในพระราชูปถัมภ์
-                            <br>2.โรงเรียนการศึกษาเด็กตาบอดพิการซ้ำซ้อน ชะอำ
-                        </p>
-                        <br>
-                        <p style="font-weight: 600; font-size: 17px;">ระยะเวลาโครงการ <span id="datestart">07 ก.พ.
-                                2565</span> ถึง <span id="dateend">11 ธ.ค. 2565</span></p>
-                    </div>
-
-                    <div class="container-fluid" style="background-color: rgb(231, 233, 235); border-radius: 10px;">
-                        <br>
-                        <p style="font-weight: 600; font-size: 17px;">ปัญหาสังคมและวิธีการแก้ไขปัญหา</p>
-                        <p id="projectreason">สืบเนื่องจาก ภาวะโรคระบาด COVID 19 ที่ผ่านมา
-                            ผู้สูงอายุขาดการติดต่อกับสังคมจึงทำให้เกิดภาวะซึมเศร้า และมองตนเองว่าไม่มีคุณค่าต่อสังคม
-                            ทางชมรมฯจึงได้จัดกิจกรรมเพื่อให้ผู้สูงอายุได้มีส่วนร่วมทางสังคม
-                            และรู้จักการแบ่งปันต่อผู้ด้อยโอกาส จึงเกิดเป็นกิจกรรมผู้สูงอายุไปร่วมทำกิจกรรม
-                            นำเงินไปบริจาคค่าอาหารและทุนการศึกษา มอบแด่น้องๆรวมถึงการมีส่วนร่วมนำข้าวสารอาหารแห้ง
-                            ที่ตนมีมาเป็นส่วนหนึ่งสำหรับการบริจาคด้วย ซึ่งในภาวะปัจจุบัน
-                            ทางโรงเรียนมีค่าใช้จ่ายไม่สัมพันธ์กับรายรับ แม้จะได้รับเงินสนับสนุนจากภาครัฐบางส่วน
-                            ก็ทำให้ประสบปัญหาด้านการดำเนินการและด้านสาธารณสุข สุขอนามัยของน้องๆมาก
-                            จึงขอให้ผู้มีเมตตาเป็ยสะพานบุญร่วมระดมทุนบริจาคในครั้งนี้
-                            <br><br>โครงการนี้มีเป้าหมายเพื่อต้องการให้ผู้สูงอายุ
-                            และประชาชนทั่วไปรู้จักการแบ่งปันคือสู่สังคมกับผู้ด้อยโอการกว่า
-                            เมื่อสังคมน่าอยู่ชีวิตของเราก็มีความสุขด้วย <br><br> กิจกรรมมีวัตถุประสงค์อยู่ 2
-                            ประการดังนี้
-                            <br><br> 1.ฝึกหล่อหลอมสังคม การเป็นผู้ให้ แบ่งปันความสุขแก่ผู้อื่น
-                            เมื่อสังคมมีผู้ให้เยอะขึ้นสังคมก็จะน่าอยู่ยิ่งขึ้น <br> 2.พัฒนาคุณภาพชีวิต ด้านสุขภาพ
-                            สุขอนามัยของผู้พิการตาบอดให้ดีขึ้นในภาวะโรคระบาดในปัจจุบัน
-                            โดยไม่ทอดทิ้งพวกเขาให้เป็นภาระต่อสังคม
-                        </p>
-
-                        <div class="container-fluid">
-                            <div class="justify-content-center" id="picarea"></div>
+                            <p style="font-weight: 600; font-size: 17px;">คำอธิบายโครงการ</p>
+                            <p id="projectdescript">ร่วมสมทบเงินบริจาคค่าอาหาร ทุนการศึกษาให้กับเด็กๆ
+                                ผู้พิการทางสายตาและพาผู้สูงวัยไปร่วมทำกิจกรรมอบข้าวสารอาหารแห้ง
+                                ผ่านทูลนิธิธรรมมิกชนเพื่อคนตาบอดในประเทศไทย จังหวัดเพชรบุรี
+                                และโรงเรียนการศึกษาเด็กตาบอดพิการศ้ำศ้อนชะอำ</p>
+                            <br>
+                            <p style="font-weight: 600; font-size: 17px;">พื้นที่ดำเนินโครงการ</p>
+                            <p id="projectarea">1.มูลนิธีกรรมิกชน เพื่อนคนตาบอดในประเทศไทย ในพระราชูปถัมภ์
+                                <br>2.โรงเรียนการศึกษาเด็กตาบอดพิการซ้ำซ้อน ชะอำ
+                            </p>
+                            <br>
+                            <p style="font-weight: 600; font-size: 17px;">ระยะเวลาโครงการ <span id="datestart">07 ก.พ.
+                                    2565</span> ถึง <span id="dateend">11 ธ.ค. 2565</span></p>
                         </div>
 
-                        <!-- <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-                            <ol class="carousel-indicators">
-                                <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-                                <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-                                <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-                            </ol>
-                            <div class="carousel-inner">
-                                <div class="carousel-item active">
-                                    <img src="img/พิการ.jpg" width="100%">
-                                </div>
-                                <div class="carousel-item">
-                                    <img src="img/older2.jpg" width="100%">
-                                </div>
-                                <div class="carousel-item">
-                                    <img src="img/พิการ.jpg" width="100%">
-                                </div>
+                        <div class="container-fluid" style="background-color: rgb(231, 233, 235); border-radius: 10px;">
+                            <br>
+                            <p style="font-weight: 600; font-size: 17px;">ปัญหาสังคมและวิธีการแก้ไขปัญหา</p>
+                            <p id="projectreason">สืบเนื่องจาก ภาวะโรคระบาด COVID 19 ที่ผ่านมา
+                                ผู้สูงอายุขาดการติดต่อกับสังคมจึงทำให้เกิดภาวะซึมเศร้า และมองตนเองว่าไม่มีคุณค่าต่อสังคม
+                                ทางชมรมฯจึงได้จัดกิจกรรมเพื่อให้ผู้สูงอายุได้มีส่วนร่วมทางสังคม
+                                และรู้จักการแบ่งปันต่อผู้ด้อยโอกาส จึงเกิดเป็นกิจกรรมผู้สูงอายุไปร่วมทำกิจกรรม
+                                นำเงินไปบริจาคค่าอาหารและทุนการศึกษา มอบแด่น้องๆรวมถึงการมีส่วนร่วมนำข้าวสารอาหารแห้ง
+                                ที่ตนมีมาเป็นส่วนหนึ่งสำหรับการบริจาคด้วย ซึ่งในภาวะปัจจุบัน
+                                ทางโรงเรียนมีค่าใช้จ่ายไม่สัมพันธ์กับรายรับ แม้จะได้รับเงินสนับสนุนจากภาครัฐบางส่วน
+                                ก็ทำให้ประสบปัญหาด้านการดำเนินการและด้านสาธารณสุข สุขอนามัยของน้องๆมาก
+                                จึงขอให้ผู้มีเมตตาเป็ยสะพานบุญร่วมระดมทุนบริจาคในครั้งนี้
+                                <br><br>โครงการนี้มีเป้าหมายเพื่อต้องการให้ผู้สูงอายุ
+                                และประชาชนทั่วไปรู้จักการแบ่งปันคือสู่สังคมกับผู้ด้อยโอการกว่า
+                                เมื่อสังคมน่าอยู่ชีวิตของเราก็มีความสุขด้วย <br><br> กิจกรรมมีวัตถุประสงค์อยู่ 2
+                                ประการดังนี้
+                                <br><br> 1.ฝึกหล่อหลอมสังคม การเป็นผู้ให้ แบ่งปันความสุขแก่ผู้อื่น
+                                เมื่อสังคมมีผู้ให้เยอะขึ้นสังคมก็จะน่าอยู่ยิ่งขึ้น <br> 2.พัฒนาคุณภาพชีวิต ด้านสุขภาพ
+                                สุขอนามัยของผู้พิการตาบอดให้ดีขึ้นในภาวะโรคระบาดในปัจจุบัน
+                                โดยไม่ทอดทิ้งพวกเขาให้เป็นภาระต่อสังคม
+                            </p>
+
+                            <div class="container-fluid">
+                                <div class="justify-content-center" id="picarea"></div>
                             </div>
-                            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button"
-                                data-slide="prev">
-                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                <span class="sr-only">Previous</span>
-                            </a>
-                            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button"
-                                data-slide="next">
-                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                <span class="sr-only">Next</span>
-                            </a>
-                        </div> -->
-                    </div><br>
 
-                    <table id="allprojecttable" class="table table-bordered table-hover"
-                        style="width: 100%; text-align: center;"></table>
-                    <br><br><br>
+                            <!-- <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                                <ol class="carousel-indicators">
+                                    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                                    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                                    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                                </ol>
+                                <div class="carousel-inner">
+                                    <div class="carousel-item active">
+                                        <img src="img/พิการ.jpg" width="100%">
+                                    </div>
+                                    <div class="carousel-item">
+                                        <img src="img/older2.jpg" width="100%">
+                                    </div>
+                                    <div class="carousel-item">
+                                        <img src="img/พิการ.jpg" width="100%">
+                                    </div>
+                                </div>
+                                <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button"
+                                    data-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="sr-only">Previous</span>
+                                </a>
+                                <a class="carousel-control-next" href="#carouselExampleIndicators" role="button"
+                                    data-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="sr-only">Next</span>
+                                </a>
+                            </div> -->
+                        </div><br>
 
-                    <h2>รายละเอียดการเงิน</h2>
-                    <table id="detailrequesttable" class="table table-bordered table-hover"
-                        style="width: 100%; text-align: center;"></table>
-                    <br><br>
-                    <div style="text-align: end;">
-                        <h3>รวมเป็นเงินทั้งหมด : <span id="projectincome">217,000</span></h3>
-                        <h3>ค่าธรรมเนียมของบีเฟรน(10%) : <span id="companyincome">21,700</span></h3>
-                        <br>
-                        <h3>ยอดระดมทุน : <span style="font-weight: bolder;" id="allincome">238,700</span></h3>
+                        <table id="allprojecttable" class="table table-bordered table-hover"
+                            style="width: 100%; text-align: center;"></table>
+                        <br><br><br>
+
+                        <h2>รายละเอียดการเงิน</h2>
+                        <table id="detailrequesttable" class="table table-bordered table-hover"
+                            style="width: 100%; text-align: center;"></table>
+                        <br><br>
+                        <div style="text-align: end;">
+                            <h3>รวมเป็นเงินทั้งหมด : <span id="projectincome">217,000</span></h3>
+                            <h3>ค่าธรรมเนียมของบีเฟรน(10%) : <span id="companyincome">21,700</span></h3>
+                            <br>
+                            <h3>ยอดระดมทุน : <span style="font-weight: bolder;" id="allincome">238,700</span></h3>
+                        </div>
+                        <!-- <hr style="color: black; size: 8px; width: 98%;">
+                            <br>
+                            <h2>การประมูลที่เข้าร่วมกับโครงการ</h2>
+                            <br>
+                            <div class="row center">
+                                <div class="container auction" style="width: 20%;">
+                                    <br>
+                                    <img src="img/monini.jpg" width="100%" alt=""><br><br><br>
+                                    <h5>จอมอนิเตอร์ 32 นิ้ว</h5>
+                                    <h5>$1205</h5>
+                                </div>
+                                <div class="container auction" style="width: 20%;">
+                                    <br>
+                                    <img src="img/code.jpg" width="100%" alt=""><br><br>
+                                    <h5>เสื้อโค้ทสีดำ ฟรีไซส์</h5>
+                                    <h5>$750</h5>
+                                </div>
+                                <div class="container auction" style="width: 20%;">
+                                    <br>
+                                    <img src="img/watch.jpg" width="100%" alt=""><br><br>
+                                    <h5>นาฬิกาเพลย์บอย</h5>
+                                    <h5>$2500</h5>
+                                </div>
+                                <div class="container auction" style="width: 20%;">
+                                    <br>
+                                    <img src="img/notebook.jpg" width="100%" alt=""><br><br><br><br>
+    
+                                    <h5>โน๊ตบุ๊ค ปี 2022 </h5>
+                                    <h5>$3500</h5>
+                                </div>
+                            </div> -->
                     </div>
-                    <!-- <hr style="color: black; size: 8px; width: 98%;">
-                        <br>
-                        <h2>การประมูลที่เข้าร่วมกับโครงการ</h2>
-                        <br>
-                        <div class="row center">
-                            <div class="container auction" style="width: 20%;">
-                                <br>
-                                <img src="img/monini.jpg" width="100%" alt=""><br><br><br>
-                                <h5>จอมอนิเตอร์ 32 นิ้ว</h5>
-                                <h5>$1205</h5>
-                            </div>
-                            <div class="container auction" style="width: 20%;">
-                                <br>
-                                <img src="img/code.jpg" width="100%" alt=""><br><br>
-                                <h5>เสื้อโค้ทสีดำ ฟรีไซส์</h5>
-                                <h5>$750</h5>
-                            </div>
-                            <div class="container auction" style="width: 20%;">
-                                <br>
-                                <img src="img/watch.jpg" width="100%" alt=""><br><br>
-                                <h5>นาฬิกาเพลย์บอย</h5>
-                                <h5>$2500</h5>
-                            </div>
-                            <div class="container auction" style="width: 20%;">
-                                <br>
-                                <img src="img/notebook.jpg" width="100%" alt=""><br><br><br><br>
 
-                                <h5>โน๊ตบุ๊ค ปี 2022 </h5>
-                                <h5>$3500</h5>
-                            </div>
-                        </div> -->
-                </div>
-
-                <div class="col-3">
-                    <p id="textowner">ชื่อเจ้าของโครงการ</p>
-                    <p id="ownername">กันทิตา บุญรักษานะ</p>
-                    <p>เวลาที่เหลือของโครงการ</p>
-                    <p id="dateofproject">40 วัน</p>
-                    <p>สถานะโครงการ</p>
-                    <p id="progressproject">77%</p><br>
-                    <p>เป้าหมาย</p>
-                    <p id='donatemoney'>$284000</p>
-                    <hr style="color: black; size: 8px; width: 90%;">
-                    <br>
-                    <p>ยอดรวมของโครงการปัจจุบัน</p>
-                    <p>$0 บาท</p><br>
-                    <p>จำนวนการประมูล</p>
-                    <p>0 ชิ้น</p><br>
-                    <p>ยอดการประมูลสำหรับโครงการ</p>
-                    <p>0</p>
+                    <div class="col-3">
+                        <p id="textowner">ชื่อเจ้าของโครงการ</p>
+                        <p id="ownername">กันทิตา บุญรักษานะ</p>
+                        <p>เวลาที่เหลือของโครงการ</p>
+                        <p id="dateofproject">40 วัน</p>
+                        <p>สถานะโครงการ</p>
+                        <p id="progressproject">77%</p><br>
+                        <p>เป้าหมาย</p>
+                        <p id='donatemoney'>$284000</p>
+                        <hr style="color: black; size: 8px; width: 90%;">
+                        <br>
+                        <p>ยอดรวมของโครงการปัจจุบัน</p>
+                        <p>$ <span id="pricedonatedurring">0</span> บาท</p><br>
+                        <p>จำนวนการประมูล</p>
+                        <p><span id="numberauction">0</span> ชิ้น</p><br>
+                        <p>ยอดการประมูลสำหรับโครงการ</p>
+                        <p><span id="priceallauction">0</span> บาท</p>
+                    </div>
                 </div>
             </div>
+
         </div>
     </div>
 </body>

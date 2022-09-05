@@ -17,9 +17,17 @@ $(document).ready(function () {
             let end_month = e.getMonth() + 1;
             let end_date = e.getDate();
 
+            if(data[0].auctionnumber == null) {
+                data[0].auctionnumber = '0'
+            }
+
+            if(data[0].allpriceauction == null) {
+                data[0].allpriceauction = '0'
+            }
+
             $('#ownername').text(data[0].donate_responperson);
             $('#dateofproject').text(data[0].timeout + ' วัน');
-            $('#progressproject').text(data[0].donate_percen + '%');
+            $('#progressproject').text(data[0].percen + '%');
             $('#donatemoney').text('$' + data[0].donate_startprice);
             $('#headertext').text(data[0].donate_name);
             $('#date').text(start_date + '/' + start_month + '/' + start_year);
@@ -32,6 +40,9 @@ $(document).ready(function () {
             $('#allincome').text(data[0].donate_startprice)
             $('#companyincome').text(data[0].donate_incomecompany);
             $('#projectincome').text(data[0].donate_incomeproject);
+            $('#pricedonatedurring').text(data[0].donate_pricedurring)
+            $('#numberauction').text(data[0].auctionnumber)
+            $('#priceallauction').text(data[0].allpriceauction)
         }
     });
 

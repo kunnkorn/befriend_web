@@ -1,16 +1,39 @@
 html, body, .container {
     height: 100%;
-}
+    /* padding-top: 50%; */
 
+}
+.card-img-left {
+    width: 45%;
+    /* height: 100%; */
+    /* Link to your background image using in the property below! */
+    background: scroll center url('https://images.unsplash.com/photo-1605713288610-00c1c630ca1e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1887&q=80');
+    background-size: cover;
+  }
+
+  .btn-login {
+    font-size: 0.9rem;
+    letter-spacing: 0.05rem;
+    padding: 0.75rem 1rem;
+    width: 100%;
+    
+  }
+  #txtusername, #txtpassword{
+    height:50px;
+  }
+  /* .card{
+   justify-content: center;
+  } */
+
+/* 
 .container{
     position: relative;
     text-align: center;
-}
+} */
 
-.container > h1{
+/* .container > h1{
     font-size: 60px;
-    /* text-align: center;
-    position: relative; */
+    
     position: absolute;
     top: 30%;
     left: 0;
@@ -21,9 +44,9 @@ html, body, .container {
     text-decoration-style: solid;
     text-decoration-thickness: 5px;
     text-decoration-skip: edge;
-}
+} */
 
-.container > #txtusername{
+/* .container > #txtusername{
     position: absolute;
     top: 45%;
     left: 15%;
@@ -39,9 +62,9 @@ html, body, .container {
     border-bottom: solid #b6b6b6 1px;
     text-decoration: none;
     padding: 3px 5px;
-}
+} */
 
-.container > #txtpassword{
+/* .container > #txtpassword{
     position: absolute;
     top: 53%;
     left: 15%;
@@ -57,9 +80,9 @@ html, body, .container {
     border-bottom: solid #b6b6b6 1px;
     text-decoration: none;
     padding: 3px 5px;
-}
+} */
 
-.container > #btnlogin{
+/* .container > #btnlogin{
     position: absolute;
     top: 63%;
     left: 15%;
@@ -74,5 +97,7 @@ html, body, .container {
     padding: 5px 8px;
     margin-top: 8px;
     
-}
+} */
+
+
 

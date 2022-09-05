@@ -1,0 +1,54 @@
+body{
+    width: 100%;
+    margin: 0;
+}
+.head_name-item{
+    font-size: 25px;
+    margin-top: 4%;
+}
+#datetime{
+    margin-left: 1.5%;
+}
+.controls-top{
+   text-align: end;
+}
+img{
+    object-fit: cover;
+}
+/* #multi-item-example{
+    height: 780px;
+    width: 780px;
+
+} */
+li{
+    display: block;
+    margin-top: 7px;
+    
+    font-size: 16px;
+    
+}
+.text_detail{
+    font-weight: bold;
+}
+#card-detail-auntion{
+    padding: 5%;
+}
+.card-img{
+    object-fit: cover;
+    height: 180px;
+    width: 200px;
+
+}
+#project_with_item{
+    margin-top: 5%;
+}
+#notapprove_item,
+#approve_item{
+    width: 30%;
+    margin-top: 3%;
+    justify-content: end;
+    float: right;
+}
+#detail_owner{
+    padding: 30px;
+}

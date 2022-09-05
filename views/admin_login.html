@@ -26,24 +26,57 @@
 </head>
 
 <body style="font-family: 'Sarabun', sans-serif;">
-        <div class="row">
-            <div class="col-lg-8 ">
-                <img class="scale-down" src="img/login_pic.png" width="100%" height="100%">
+    <!-- <div class="container-fluid">
+        <div class="row ">
+            <div class="col-lg-10 col-xl-9 mx-auto" >
+                <img  src="img/icons/children_login.png" >
             </div>
-            <div class="col-lg-4">
+            <div class="col-md-6 d-none d-md-flex">
                     <div class="container">
                         <h1 id="logintext">Login</h1>
                         <input type="text" id="txtusername" placeholder="Username">
                         <input type="text" id="txtpassword" placeholder="Password">
                         <button type="button" class="btn" id="btnlogin">Login</button>
                     </div>
-                    
-
             </div>
         </div>
-    
+
+    </div> -->
+    <div class="container-fluid " >
+        <div class="row align-items-center vh-100">
+            <div class="col-lg-10 col-xl-9 mx-auto" >
+                <div class="card flex-row my-5   border-0 shadow rounded-3 overflow-hidden">
+                    <div class="card-img-left d-none d-md-flex" >
+                        <!-- background image  -->
+                        
+                    </div>
+                    <div class="card-body p-5 p-sm-5 mx-5">
+                        <h2 class="card-title mb-2  fs-5" style="font-weight: 600;">SIGN IN</h2>
+                        <h5 class=" mb-4 fw-light fs-5">with BEFRIEND</h5>
+                        <hr class=" mb-5 fw-light fs-5">
+                        <div class="form-floating mb-4">
+                            <label for="txtusername">Username</label>
+                            <input type="text" class="form-control" id="txtusername" placeholder="Username" required autofocus>
+                        </div>
+                        <div class="form-floating mb-5">
+                            <label for="txtusername">Password</label>
+                            <input type="password" class="form-control" id="txtpassword" placeholder="Password" >
+                        </div>
+                        <div class="d-grid mb-2">
+                            <button class="btn btn-lg btn-warning btn-login fw-bold text-uppercase" type="submit" id="btnlogin">SIGN IN</button>
+                          </div>
+
+                    </div>
 
 
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+      
 </body>
 
 </html>

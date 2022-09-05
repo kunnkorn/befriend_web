@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detail auction</title>
+
+    <!-- Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sarabun:ital,wght@0,400;1,100&display=swap" rel="stylesheet">
+    <!-- <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css"> -->
+    <!-- <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap5.min.css"> -->
+
+    <!-- Bootstrap CSS CDN -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"
+        integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+    <!-- Our Custom CSS -->
+    <link rel="stylesheet" href="styles/sidebar.css">
+    <link rel="stylesheet" href="styles/auctionorganiz_detaildelivery.css">
+
+    <!-- Scrollbar Custom CSS -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Pridi&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.0/umd/popper.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://code.iconify.design/1/1.0.6/iconify.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/10.15.7/sweetalert2.all.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+    <!-- <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script> -->
+    <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.2.6/js/dataTables.responsive.min.js"></script>
+    <script src="src/auctionorganiz_detaildelivery.js"></script>
+</head>
+
+<body>
+
+    <div class="wrapper">
+        <!-- Sidebar  -->
+        <nav id="sidebar">
+            <div class="sidebar-header">
+                <img src="img/befriend-web_icon.png" width="50%" height="35%" id="webicon">
+                <h3 style="text-align: center;">BEFRIEND</h3>
+                <hr style="color: black; size: 8px; width: 90%;">
+            </div>
+            <ul class="list-unstyled components">
+                <li><a href="/request" ><span><img src="img/mail.png" width="20px"></span>
+                        ข้อมูลคำขอ</span></a></li>
+                <li><a href="/allproject"><span> <img src="img/project.png" width="20px"></span>
+                        โครงการ</a></li>
+                <li><a href="/auction"><span><img src="img/auction.png" width="23px"></span> การประมูล</a></li>
+                <li><a href="/auction_organiz" class="active"><span><img src="img/home.png" width="23px"></span>
+                        การประมูลขององค์กร</a></li>
+                <li><a href="/status-delivery"><span><img src="img/delivery-truck.png" width="23px"></span>
+                        สถานะสินค้า</a></li>
+                <li><a href="/logout"><span><img src="img/logout.png" width="23px"></span>
+                        ออกจากระบบ</a></li>
+                <br><br><br>
+                <hr style="color: black; size: 8px; width: 80%; vertical-align: end;">
+                <li style="text-align: center;">
+                    <h4><span><img src="img/user.png" width="50px"></span>
+                        Kun Run</h4>
+                </li>
+            </ul>
+        </nav>
+
+        <!-- Page content wrapper-->
+        <div id="content">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <div class="container-fluid">
+                    <button type="button" id="sidebarCollapse" class="btn btn-info">
+                        <i class="fas fa-align-left"></i>
+                        <span>Toggle Sidebar</span>
+                    </button>
+                </div>
+            </nav>
+            <a href="/auction_organiz" id="btnback"><i class="fa fa-arrow-left" aria-hidden="true"> ย้อนกลับ</i></a>
+
+            <div class="row mt-5">
+                <div class="col-lg-5">
+                    <div class="card">
+                        <div class="row no-gutters">
+                            <div class="col-md-4 p-2" id="picauction">
+                                <!-- <img src="img/watch.jpg" class="card-img" width="50px" height="150px"
+                                    style="object-fit: cover"> -->
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body">
+                                    <h5 class="card-title" id="auctionname">นาฬิกาลิมิเตทเอดิชัน </h5>
+                                    <p id="donatename">โครงการ ช่วยน้อง</p>
+                                    <p><span id="auctionprice">15</span> บาท</p>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="container-trac">
+                                <h5 class="card-title">เลขพัสดุ</h5>
+                                <h5> <span id="nametracking" >Kerry :</span><span id="tracknumber">TH123456666</span></h5>
+
+                            </div>
+                            
+                            <i class="fa fa-user" aria-hidden="true"> <span class="card-text ml-4">ชื่อผู้รับ</span></i>
+                            <ul>
+                                <li id="usersname">พิสมัย ตึ้งโป๊ะ</li>
+                            </ul>
+                            <i class="fa fa-map-marker mt-3" aria-hidden="true"> <span
+                                    class="card-text ml-4 ">ที่อยู่การจัดส่ง</span></i>
+                            <ul>
+                                <li ><span id="address">77/25 หมู่บ้านอีเลิ้ง โครงการพัฒนาชลบท</span> 
+                                    อำเภอ <span id="userdistrict">สีสัน</span> ตำบล <span id="userssubdistrict">ในเมือง</span> จังหวัด <span id="userprovince">แฮิงฉับ</span> <span id="postcode">57100</span></li>
+                                <li id="phonenum">0874122933</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="container-delivery">
+                        <span> ค่าส่ง</span>
+                        <span> <span id="delivery_price">150.0</span> bath.</span>
+                    </div>
+                    <hr>
+                    <div class="container-delivery">
+                        <span> ยอดรวม</span>
+                        <span id="total_price">5000165.0 bath.</span>
+                    </div>
+                    <button type="button" class="btn btn-warning btn-lg" data-toggle="modal" data-target="#modelId" id="update_tracking">อัพเดตเลขพัสดุ</button>
+
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+          <!-- Modal -->
+          <div class="modal fade" id="modelId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId"
+          aria-hidden="true">
+          <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                  <div class="modal-header">
+                      <h5 class="modal-title">อัพเดตสถานะการจัดส่ง</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                      </button>
+                  </div>
+                  <div class="modal-body">
+                    <form action="">
+                        <label for="company_delivery" class="col-form-label">บริษัทที่จัดส่ง</label>
+                        <select name="company" id="company_delivery" class="form-control">
+                            <option value="kerry">Kerry</option>
+                            <option value="flash">Flash express</option>
+                            <option value="ninja">Ninja</option>
+                            <option value="thai">Thai delivery</option>
+                        </select>
+                        <label for="txttracking" class="col-form-label mt-3">เลขพัสดุ</label>
+                        <input type="text" placeholder="Tracking" class="form-control  mb-3" id="txttracking">
+                    </form>
+                   
+                  </div>
+                  <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                      <button type="button" class="btn btn-warning" id="btn-update">Save</button>
+                  </div>
+              </div>
+          </div>
+      </div>
+
+
+
+
+
+
+    <!---------------------------- CDN for side bar  ------------------------------------------------->
+    <!-- jQuery CDN - Slim version (=without AJAX) -->
+    <!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script> -->
+    <!-- Popper.JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"
+        integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ"
+        crossorigin="anonymous"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"
+        integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm"
+        crossorigin="anonymous"></script>
+    <!-- jQuery Custom Scroller CDN -->
+    <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
+
+    <script src="src/sidebar_scripts.js"></script>
+</body>
+
+</html>

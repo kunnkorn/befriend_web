@@ -4,28 +4,9 @@ body {
     background-color: #000000;
 }
 
-.vertical-nav {
-    min-width: 17rem;
-    width: 17rem;
-    height: 100%;
-    position: fixed;
-    /* top: 100px; */
-    left: 0;
-    background: rgb(255, 255, 255);
-    transition: all 0.4s;
-    margin-top: 11px;
-}
 
-.vertical-menu a {
-    display: block;
-    padding: 15px;
-    text-decoration: none;
-}
 
-.vertical-menu a:hover {
-    color: #fbfefb;
-    background-color: #fce07d;
-}
+
 
 #btnback {
     cursor: pointer;
@@ -56,12 +37,14 @@ body {
         width: 100%;
         margin: 0;
     }
+
 }
 
 @media (min-width: 768px) {
     #text-brand {
         display: none;
     }
+ 
 }
 
 li a {
