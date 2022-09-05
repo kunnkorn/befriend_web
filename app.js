@@ -3,8 +3,10 @@ const express = require('express');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 const path = require('path');
+const cors = require('cors');
 
 const app = express();
+app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')))
@@ -765,7 +767,7 @@ app.get('/endauctionpost', (_req, res) => {
 
 app.get('/endprojectpost' , (_req , res) => {
 
-    const sql = 'UPDATE donate SET donate.donate_status = 4 WHERE DATEDIFF(donate.donate_enddate , CURRENT_DATE) = 0 OR donate.donate_pricedurring = donate.donate_startprice AND donate.donate_status = 2'
+    const sql = 'UPDATE donate SET donate.donate_status = 4 WHERE DATEDIFF(donate.donate_enddate , CURRENT_DATE) <= 0 OR donate.donate_pricedurring = donate.donate_startprice AND donate.donate_status = 2'
     con.query(sql , function(err , _result) {
         if(err) {
             console.log(err);
@@ -1026,7 +1028,7 @@ app.post('/detailopenauction', (req, res) => {
 app.post('/projecthistory', (req, res) => {
     const ownerid = req.body.ownerid;
 
-    const sql = 'SELECT donate.donate_id , donate.donate_name , donate.donate_area , donate.donate_pricedurring , DATEDIFF(donate.donate_enddate , donate.donate_startdate) AS timeout , 100 / donate.donate_startprice * donate.donate_pricedurring - 100 / donate.donate_startprice * donate.donate_pricedurring % 1 AS "percen" , MIN(picdonate.picdonate_id) AS "picid" , MIN(picdonate.picdonate_name) AS "namepic" FROM donate JOIN picdonate ON picdonate.picdonate_donateid = donate.donate_id AND donate.donate_status = 2 AND donate.donate_owner = ? GROUP BY donate.donate_id'
+    const sql = 'SELECT donate.donate_id , donate.donate_name , donate.donate_area , donate.donate_status , donate.donate_approveupdateprogress , donate.donate_pricedurring , DATEDIFF(donate.donate_enddate , donate.donate_startdate) AS timeout , 100 / donate.donate_startprice * donate.donate_pricedurring - 100 / donate.donate_startprice * donate.donate_pricedurring % 1 AS "percen" , MIN(picdonate.picdonate_id) AS "picid" , MIN(picdonate.picdonate_name) AS "namepic" FROM donate JOIN picdonate ON picdonate.picdonate_donateid = donate.donate_id AND donate.donate_status = 2 AND donate.donate_owner = ? GROUP BY donate.donate_id'
     con.query(sql, [ownerid], function (err, resultdata) {
         if (err) {
             console.log(err);
@@ -1042,7 +1044,7 @@ app.post('/projecthistory', (req, res) => {
 app.post('/projectendhistiry', (req, res) => {
     const userid = req.body.userid;
 
-    const sql = 'SELECT donate.donate_id , donate.donate_name , donate.donate_area , donate.donate_pricedurring , DATEDIFF(donate.donate_enddate , donate.donate_startdate) AS timeout , 100 / donate.donate_startprice * donate.donate_pricedurring - 100 / donate.donate_startprice * donate.donate_pricedurring % 1 AS "percen" , MIN(picdonate.picdonate_id) AS "picid" , MIN(picdonate.picdonate_name) AS "namepic" FROM donate JOIN picdonate ON picdonate.picdonate_donateid = donate.donate_id AND donate.donate_status = 4 AND donate.donate_owner = ? GROUP BY donate.donate_id'
+    const sql = 'SELECT donate.donate_id , donate.donate_name , donate.donate_area , donate.donate_status , donate.donate_approveupdateprogress , donate.donate_pricedurring , DATEDIFF(donate.donate_enddate , donate.donate_startdate) AS timeout , 100 / donate.donate_startprice * donate.donate_pricedurring - 100 / donate.donate_startprice * donate.donate_pricedurring % 1 AS "percen" , MIN(picdonate.picdonate_id) AS "picid" , MIN(picdonate.picdonate_name) AS "namepic" FROM donate JOIN picdonate ON picdonate.picdonate_donateid = donate.donate_id AND donate.donate_status = 4 AND donate.donate_owner = ? GROUP BY donate.donate_id'
     con.query(sql, [userid], function (err, resultendrpojectdata) {
         if (err) {
             console.log(err);
@@ -1129,7 +1131,7 @@ app.post('/showdetailprojectupdate' , (req , res) => {
 // All Data Project For Senario
 app.get('/alldataprojectforsenario', function (req, res) {
 
-    const sql = 'SELECT donate.donate_id , donate.donate_name , donate.donate_area , donate.donate_pricedurring , DATEDIFF(donate.donate_enddate , CURRENT_DATE) AS timeout , 100 / donate.donate_startprice * donate.donate_pricedurring - 100 / donate.donate_startprice * donate.donate_pricedurring % 1 AS "percen", MIN(picdonate.picdonate_id) AS "picid" , MIN(picdonate.picdonate_name) AS "namepic" , ROUND(COUNT(auction.auction_name)/4) AS "numberauction" FROM donate JOIN picdonate ON picdonate.picdonate_donateid = donate.donate_id AND donate.donate_status = 2 LEFT JOIN auction ON auction.auction_donateID = donate.donate_id  GROUP BY donate.donate_id';
+    const sql = 'SELECT donate.donate_id , donate.donate_name , donate.donate_area , donate.donate_status , donate.donate_approveupdateprogress , donate.donate_pricedurring , DATEDIFF(donate.donate_enddate , CURRENT_DATE) AS timeout , 100 / donate.donate_startprice * donate.donate_pricedurring - 100 / donate.donate_startprice * donate.donate_pricedurring % 1 AS "percen", MIN(picdonate.picdonate_id) AS "picid" , MIN(picdonate.picdonate_name) AS "namepic" , ROUND(COUNT(auction.auction_name)/4) AS "numberauction" FROM donate JOIN picdonate ON picdonate.picdonate_donateid = donate.donate_id AND donate.donate_status = 2 LEFT JOIN auction ON auction.auction_donateID = donate.donate_id  GROUP BY donate.donate_id';
     con.query(sql, function (err, result) {
         if (err) {
             console.log(err);
@@ -1171,7 +1173,7 @@ app.post('/getlastdonatefromuser' , (req , res) => {
 
 app.get('/datarecommend', function (req, res) {
 
-    const sql = 'SELECT donate.donate_id , donate.donate_name , donate.donate_area , donate.donate_startprice ,donate.donate_pricedurring , DATEDIFF(donate.donate_enddate , CURRENT_DATE) AS timeout , 100 / donate.donate_startprice * donate.donate_pricedurring - 100 / donate.donate_startprice * donate.donate_pricedurring % 1 AS "percen" , MIN(picdonate.picdonate_name) AS "picname" FROM donate JOIN picdonate ON picdonate.picdonate_donateid = donate.donate_id AND DATEDIFF(donate.donate_enddate , CURRENT_DATE) < 2 AND donate.donate_status = 2 GROUP BY donate.donate_id'
+    const sql = 'SELECT donate.donate_id , donate.donate_name , donate.donate_area , donate.donate_status , donate.donate_approveupdateprogress , donate.donate_startprice ,donate.donate_pricedurring , DATEDIFF(donate.donate_enddate , CURRENT_DATE) AS timeout , 100 / donate.donate_startprice * donate.donate_pricedurring - 100 / donate.donate_startprice * donate.donate_pricedurring % 1 AS "percen" , MIN(picdonate.picdonate_name) AS "picname" FROM donate JOIN picdonate ON picdonate.picdonate_donateid = donate.donate_id AND DATEDIFF(donate.donate_enddate , CURRENT_DATE) < 2 AND donate.donate_status = 2 GROUP BY donate.donate_id'
     con.query(sql, function (err, result) {
         if (err) {
             console.log(err)
