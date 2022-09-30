@@ -106,5 +106,19 @@ $(document).ready(function () {
         error: (xhr) => {
             alert(xhr.responseText);
         }
+    });
+
+    $("#btnpay").on('click' , function() {
+        $.ajax({
+            type: "POST",
+            url: "/updatestatusdonatepayment",
+            data: {donate_id: sessionStorage.request},
+            success: function (response) {
+                alert("โอนเงินสำเร็จแล้ว");
+                window.location.replace('/allproject');
+            }, error: (xhr) => {
+                alert(xhr.responseText);
+            }
+        });
     })
 });

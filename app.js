@@ -3,9 +3,10 @@ const express = require('express');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 const path = require('path');
-const cors = require('cors');
+
 
 const app = express();
+const cors = require('cors');
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -476,7 +477,7 @@ app.post('/paymentauctioncart', function (req, res) {
             res.status(500).send('Database Error Cannot Update')
         }
         else {
-            const sql = 'UPDATE auction SET auction.auction_payment = 2 , auction_transprot = 2 WHERE auction.auction_id = ?'
+            const sql = 'UPDATE auction SET auction.auction_payment = 2 , auction_transprot = 1 WHERE auction.auction_id = ?'
             for (let i = 0; i < auctionid.length; i++) {
                 con.query(sql, [auctionid[i]['auction_id']], function (err, resultupdateauction) {
                     if (err) {
@@ -880,7 +881,7 @@ app.post('/showallname', (req, res) => {
 app.post('/prepostdonate', (req, res) => {
     const donateid = req.body.donateidpost;
 
-    const sql = 'SELECT donate.donate_id , donate.donate_name , donate.donate_area , DATEDIFF(donate.donate_enddate , donate.donate_startdate) AS timeday , donate.donate_pricedurring , 100 / donate.donate_startprice * donate.donate_pricedurring - 100 / donate.donate_startprice * donate.donate_pricedurring % 1 AS "percen" , donate.donate_startprice , MIN(picdonate.picdonate_name) AS "picname" FROM donate JOIN picdonate ON picdonate.picdonate_donateid = donate.donate_id AND donate.donate_id = ? GROUP BY donate.donate_id'
+    const sql = 'SELECT donate.donate_id , donate.donate_name , donate.donate_area , DATEDIFF(donate.donate_enddate , donate.donate_startdate) AS timeday , donate.donate_pricedurring , 100 / donate.donate_startprice * donate.donate_pricedurring - 100 / donate.donate_startprice * donate.donate_pricedurring % 1 AS "percen" , donate.donate_startprice , donate.donate_status , donate.donate_approveupdateprogress , MIN(picdonate.picdonate_name) AS "picname" FROM donate JOIN picdonate ON picdonate.picdonate_donateid = donate.donate_id AND donate.donate_id = ? GROUP BY donate.donate_id'
     con.query(sql, [donateid], (err, result) => {
         if (err) {
             console.log(err)
@@ -1518,7 +1519,7 @@ app.post('/unapproveproject', (req, res) => {
 
 // Allproject Table
 app.get('/allprojecttable', function (req, res) {
-    const sql = 'SELECT donate.donate_id , donate.donate_responperson , donate.donate_name, DATE(donate.donate_startdate) AS donatestart , donate.donate_payment_status , 100 / donate.donate_startprice * donate.donate_pricedurring - 100 / donate.donate_startprice * donate.donate_pricedurring % 1 AS "percen"  FROM donate WHERE donate.donate_status != 1'
+    const sql = 'SELECT donate.donate_id , donate.donate_responperson , donate.donate_name, DATE(donate.donate_startdate) AS donatestart , donate.donate_status , donate.donate_payment_status , 100 / donate.donate_startprice * donate.donate_pricedurring - 100 / donate.donate_startprice * donate.donate_pricedurring % 1 AS "percen" , DATEDIFF(donate.donate_enddate , CURRENT_DATE()) AS "timeout" FROM donate WHERE donate.donate_status != 1'
     con.query(sql, function (err, result) {
         if (err) {
             console.log(err);
@@ -1670,7 +1671,7 @@ app.get('/admindataallauctionnotend', (req, res) => {
 
 //  สำหรับ  Admin เช็คการประมูลทที่จบไปแล้ว
 app.get('/admindataendauction', (req, res) => {
-    const sql = 'SELECT auction.auction_id, auction.auction_name, DATEDIFF( auction.auction_enddate, CURRENT_DATE ) AS "Timeout", auction.auction_endprice, auction.auction_transprot, auction.auction_winner, f.users_name AS "winner", donate.donate_name, MIN(picauction.picaution_name) AS "picname" FROM auction JOIN donate ON auction.auction_donateID = donate.donate_id JOIN picauction ON picauction.picauction_auctionid = auction.auction_id AND auction.auction_status = 4 JOIN users u ON u.users_id = auction.auction_owneruserID AND u.users_role = 1 JOIN users f ON f.users_id = auction.auction_winner GROUP BY auction.auction_id'
+    const sql = 'SELECT auction.auction_id, auction.auction_name, DATEDIFF( auction.auction_enddate, CURRENT_DATE ) AS "Timeout", auction.auction_endprice, auction.auction_transprot, auction.auction_winner, f.users_name AS "winner", donate.donate_name, MIN(picauction.picaution_name) AS "picname" FROM auction JOIN donate ON auction.auction_donateID = donate.donate_id JOIN picauction ON picauction.picauction_auctionid = auction.auction_id AND auction.auction_status = 4 AND auction.auction_payment = 2 JOIN users u ON u.users_id = auction.auction_owneruserID AND u.users_role = 1 JOIN users f ON f.users_id = auction.auction_winner GROUP BY auction.auction_id'
     con.query(sql, function (err, resultdataendauction) {
         if (err) {
             console.log(err);
@@ -1772,12 +1773,27 @@ app.get('/auctionlistpaymentanddelivery' , (_req , res) => {
     con.query(sql , (err ,resultauctionlistpaymentanddeli) => {
         if(err) {
             console.log(err);
-            res.status(500).send('Cannot Get Auction LIst payment and Delivery')
+            res.status(500).send('Cannot Get Auction List payment and Delivery')
         }
         else {
             res.send(resultauctionlistpaymentanddeli);
         }
     })
+});
+
+
+app.post('/updatestatusdonatepayment' , (req , res) => {
+    const donate_id = req.body.donate_id;
+
+    const sql = 'UPDATE donate SET donate.donate_payment_status = 2 WHERE donate.donate_id = ?';
+    con.query(sql, [donate_id] , (err , resultupdatestatus) => {
+        if(err) {
+            console.log(err);
+            res.status(500).send('Cannot Update Status Donate Payment');
+        } else {
+            res.send('Update Success');
+        }
+    });
 })
 
 // Create hash password for Admin
